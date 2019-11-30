@@ -100,7 +100,7 @@
 		</record>
 
 		<menuitem name="UPOCAR" id="upocar_root"
-			action="act_vehiculo" />
+			action="act_reparacion" />
 
 		<menuitem name="Reparaciones" id="upocar_reparacion"
 			parent="upocar_root" sequence="100" />
