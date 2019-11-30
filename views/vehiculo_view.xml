@@ -12,9 +12,9 @@
 						<field name="numero_bastidor" />
 						<field name="kilometros" />
 					</group>
-					<group string="Reparaciones">
+					<!-- <group string="Reparaciones">
 						<field name="reparacion_ids" />
-					</group>
+					</group> -->
 				</form>
 			</field>
 		</record>

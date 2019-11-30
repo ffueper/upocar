@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upocar_taller_form">
+			<field name="name">upocar_taller_form</field>
+			<field name="model">upocar.taller</field>
+			<field name="arch" type="xml">
+				<form string="form_taller">
+					<group string="Taller">
+						<field name="nombre" />
+						<field name="cif" />
+						<field name="direccion" />
+						<field name="hide" invisible="1" />
+						<field name="country_id"
+							options="{'no_quick_create': True, 'no_create_edit' : True}" />
+						<field name="state_id"
+							options="{'no_quick_create': True, 'no_create_edit' : True}"
+							attrs="{'invisible':[('hide', '=', True)]}" />
+						<field name="city" />
+					</group>
+					<group colspan="2">
+						<field name="proveedor_ids">
+							<tree>
+								<field name="nombre" />
+								<field name="cif" />
+							</tree>
+						</field>
+						<field name="cliente_ids">
+							<tree>
+								<field name="nombre" />
+								<field name="apellidos" />
+								<field name="dni" />
+							</tree>
+						</field>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="upocar_taller_tree_view">
+			<field name="name">view_upocar_taller_tree</field>
+			<field name="model">upocar.taller</field>
+			<field name="arch" type="xml">
+				<tree string="tree_taller">
+					<field name="cif" />
+					<field name="nombre" />
+					<field name="direccion" />
+
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="upocar_taller_search">
+			<field name="name">upocar_taller_search</field>
+			<field name="model">upocar.taller</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Taller">
+					<field name="nombre" />
+					<field name="cif" />
+					<field name="state_id" />
+					<field name="country_id" />
+					<field name="city" />
+					<field name="direccion" />
+
+					<separator orientation="vertical" />
+
+					<group expand="0" string="Agrupar por...">
+						<filter name="group_by_ciudad" string="Ciudad"
+							context="{'group_by':'city'}" />
+
+						<filter name="group_by_provincia" string="Provincia"
+							context="{'group_by':'state_id'}" />
+
+						<filter name="group_by_pais" string="Pais"
+							context="{'group_by':'country_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="act_taller" model="ir.actions.act_window">
+			<field name="name">Taller</field>
+			<field name="res_model">upocar.taller</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="upocar_taller_search" />
+		</record>
+
+		<menuitem name="Taller" id="upocar_taller_submenu"
+			parent="upocar_root" sequence="1" />
+		<menuitem name="Ver Talleres" id="ver_taller_submenu"
+			parent="upocar_taller_submenu" sequence="110" action="act_taller" />
+	</data>
+</odoo> 

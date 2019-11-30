@@ -22,9 +22,9 @@ class reparacion(models.Model):
     
     vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado")
     factura_id = fields.Many2one("upocar.factura", string="Factura")
-    #repuesto_ids = fields.One2many("upocar.repuesto", string=Repuestos utilizados")
+    #repuesto_ids = fields.One2many("upocar.repuesto", "repuesto_ids", string="Repuestos utilizados")
     mecanico_ids = fields.Many2many("upocar.mecanico", string="Mecánico")
-    #taller_id = fields.Many2one("upocar.taller", string="Taller")
+    taller_id = fields.Many2one("upocar.taller", string="Taller")
     
     @api.depends('fecha_inicio','fecha_fin')
     def _compute_numero_dias(self):

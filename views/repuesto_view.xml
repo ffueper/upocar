@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_repuesto_form">
+			<field name="name">upocar_repuesto_form</field>
+			<field name="model">upocar.repuesto</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de repuesto">
+					<group string="Repuesto">
+						<field name="nombre_repuesto" />
+						<field name="descripcion" />
+						<field name="precio" />
+						<field name="cantidad" />
+						<field name="modelo_id">
+							<tree>
+								<field name="nombre_modelo" />
+							</tree>
+						</field>
+						<field name="marca_id">
+							<tree>
+								<field name="nombre_marca" />
+							</tree>
+						</field>
+					</group>
+					<group string="Localización">
+						<field name="taller_id" />
+						<field name="proveedor_id" />
+						<field name="reparacion_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_repuesto_tree">
+			<field name="name">upocar_repuesto_tree</field>
+			<field name="model">upocar.repuesto</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="nombre_repuesto" />
+					<field name="descripcion" />
+					<field name="precio" />
+					<field name="cantidad" />
+					<field name="modelo_id">
+							<tree>
+								<field name="nombre_modelo" />
+							</tree>
+					</field>
+					<field name="marca_id">
+						<tree>
+							<field name="nombre_marca" />
+						</tree>
+					</field>
+				</tree>
+			</field>
+		</record>
+		
+		<!-- VISTA GRAPH -->
+		<record model="ir.ui.view" id="library_book_graph">
+			<field name="name">Repuestos</field>
+			<field name="model">upocar.repuesto</field>
+			<field name="arch" type="xml">
+				<graph string="Unidades por repuesto" type="bar">
+					<field name="nombre_repuesto" type="row" />
+					<field name="cantidad" type="measure" />
+				</graph>
+			</field>
+		</record>
+
+		<record id="act_repuesto" model="ir.actions.act_window">
+			<field name="name">Repuesto</field>
+			<field name="res_model">upocar.repuesto</field>
+			<field name="view_mode">tree,form,graph</field>
+		</record>
+
+		<menuitem name="Repuesto" id="upocar_repuesto"
+			parent="upocar_root" />
+		<menuitem name="Ver repuestos" id="upocar_repuesto_ver"
+			parent="upocar_repuesto" action="act_repuesto" />
+
+	</data>
+</odoo>
