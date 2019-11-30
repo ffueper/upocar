@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_vehiculo_form">
+			<field name="name">Vehículo</field>
+			<field name="model">upocar.vehiculo</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de vehículo">
+					<group string="Vehiculo">
+						<field name="matricula" />
+						<field name="numero_bastidor" />
+						<field name="kilometros" />
+					</group>
+					<group string="Reparaciones">
+						<field name="reparacion_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_vehiculo_tree">
+			<field name="name">Vehículos</field>
+			<field name="model">upocar.vehiculo</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="matricula" />
+					<field name="numero_bastidor" />
+					<field name="kilometros" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_vehiculo" model="ir.actions.act_window">
+			<field name="name">Vehículos</field>
+			<field name="res_model">upocar.vehiculo</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Vehículos" id="upocar_vehiculos"
+			parent="upocar_root" sequence="100"/>
+		<menuitem name="Ver vehículos" id="upocar_vehiculos_ver"
+			parent="upocar_vehiculos" action="act_vehiculo" sequence="100"/>
+
+	</data>
+</odoo>

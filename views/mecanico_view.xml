@@ -1,0 +1,45 @@
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_mecanico_form">
+			<field name="name">upocar_mecanico_form</field>
+			<field name="model">upocar.mecanico</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de mecánico">
+					<group string="Reparación">
+						<field name="nombre" />
+						<field name="apellidos" />
+						<field name="especialidad" />
+					</group>
+					<group string="Reparaciones">
+						<field name="reparacion_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_mecanico_tree">
+			<field name="name">upocar_mecanico_tree</field>
+			<field name="model">upocar.mecanico</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="nombre" />
+					<field name="apellidos" />
+					<field name="especialidad" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_mecanico" model="ir.actions.act_window">
+			<field name="name">Mecánicos</field>
+			<field name="res_model">upocar.mecanico</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Mecánicos" id="upocar_mecanico"
+			parent="upocar_root" />
+		<menuitem name="Ver mecánicos" id="upocar_mecanico_ver"
+			parent="upocar_mecanico" action="act_mecanico" />
+	</data>
+</odoo>

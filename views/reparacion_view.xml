@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_reparacion_form">
+			<field name="name">upocar_reparacion_form</field>
+			<field name="model">upocar.reparacion</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de reparación">
+					<group string="Reparación">
+						<field name="descripcion" />
+						<field name="precio_hora" />
+						<field name="fecha_inicio" />
+						<field name="fecha_fin" />
+						<field name="numero_dias" />
+						<field name="numero_mecanicos" />
+						<field name="horas_trabajadas" />
+					</group>
+					<group string="Vehículo">
+						<field name="vehiculo_id" nolabel="1" colspan="4">
+							<tree>
+								<field name="matricula" />
+								<field name="numero_bastidor" />
+								<field name="kilometros" />
+							</tree>
+						</field>
+					</group>
+					<group string="Mecánico/s">
+						<field name="mecanico_ids" nolabel="1" />
+					</group>
+					<group string="Factura">
+						<field name="factura_id" nolabel="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_reparacion_tree">
+			<field name="name">upocar_reparacion_tree</field>
+			<field name="model">upocar.reparacion</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="descripcion" />
+					<field name="fecha_inicio" />
+					<field name="fecha_fin" />
+					<field name="numero_dias" />
+					<field name="numero_mecanicos" />
+					<field name="horas_trabajadas" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- VISTA CALENDAR -->
+		<record model="ir.ui.view" id="upocar_reparacion_calendar">
+			<field name="name">upocar_reparacion_calendar</field>
+			<field name="model">upocar.reparacion</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar string="Reparaciones" date_start="fecha_inicio"
+					date_stop="fecha_fin" mode="month">
+					<field name="descripcion" />
+					<field name="horas_trabajadas" />
+				</calendar>
+			</field>
+		</record>
+
+		<!-- SEARCH -->
+		<record model="ir.ui.view" id="upocar_reparacion_search">
+			<field name="name">upocar_reparacion_search</field>
+			<field name="model">upocar.reparacion</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Reparaciones">
+					<field name="descripcion" />
+					<field name="fecha_inicio" />
+					<field name="fecha_fin" />
+					<filter string="Reparaciones no terminadas"
+						domain="[('fecha_fin','=',None)]" />
+					<filter string="Más de un mecánico"
+						domain="[('numero_mecanicos','>',1)]" />
+					<filter string="Más de un mecánico"
+						domain="[('numero_mecanicos','>',1)]" />
+					<separator orientation="vertical" />
+					<group expand="0" string="Agrupar por...">
+						<filter name="group_by_vehiculo" string="Vehículo reparado"
+							context="{'group_by':'vehiculo_id'}" />
+						<filter name="group_by_descripción" string="Descripción"
+							context="{'group_by':'descripcion'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="act_reparacion" model="ir.actions.act_window">
+			<field name="name">Reparaciones</field>
+			<field name="res_model">upocar.reparacion</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="search_view_id" ref="upocar_reparacion_search" />
+		</record>
+
+		<menuitem name="UPOCAR" id="upocar_root"
+			action="act_vehiculo" />
+
+		<menuitem name="Reparaciones" id="upocar_reparacion"
+			parent="upocar_root" sequence="100" />
+		<menuitem name="Ver reparaciones" id="upocar_reparacion_ver"
+			parent="upocar_reparacion" action="act_reparacion" sequence="100" />
+	</data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_factura_form">
+			<field name="name">upocar_factura_form</field>
+			<field name="model">upocar.factura</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de factura">
+					<group string="Factura">
+						<field name="numero_factura" />
+						<field name="fecha_facturacion" />
+						<field name="descuento" />
+						<field name="importe_total" />
+					</group>
+					<group string="Reparación">
+						<field name="reparacion_id" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_factura_tree">
+			<field name="name">upocar_factura_tree</field>
+			<field name="model">upocar.factura</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="numero_factura" />
+					<field name="fecha_facturacion" />
+					<field name="descuento" />
+					<field name="importe_total" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_factura" model="ir.actions.act_window">
+			<field name="name">Facturas</field>
+			<field name="res_model">upocar.factura</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Facturas" id="upocar_factura"
+			parent="upocar_root" />
+		<menuitem name="Ver facturas" id="upocar_factura_ver"
+			parent="upocar_factura" action="act_factura" />
+	</data>
+</odoo>
