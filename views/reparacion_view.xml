@@ -25,6 +25,14 @@
 							</tree>
 						</field>
 					</group>
+					<group string="Repuestos">
+						<field name="repuesto_ids" nolabel="1">
+							<tree>
+								<field name="descripcion" />
+								<field name="precio" />
+							</tree>
+						</field>
+					</group>
 					<group string="Mecánico/s">
 						<field name="mecanico_ids" nolabel="1" />
 					</group>
