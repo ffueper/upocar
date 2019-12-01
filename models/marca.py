@@ -10,4 +10,4 @@ class marca(models.Model):
     
     nombre_marca = fields.Char('Nombre', size=64, required=True)
     
-    modelo_ids = fields.Many2many("upocar.modelo", string="Modelo de la marca")
+    modelo_ids = fields.One2many("upocar.modelo", "marca_id", string="Modelo de la marca")

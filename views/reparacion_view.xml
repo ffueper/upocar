@@ -87,8 +87,6 @@
 						domain="[('fecha_fin','=',None)]" />
 					<filter string="Más de un mecánico"
 						domain="[('numero_mecanicos','>',1)]" />
-					<filter string="Más de un mecánico"
-						domain="[('numero_mecanicos','>',1)]" />
 					<separator orientation="vertical" />
 					<group expand="0" string="Agrupar por...">
 						<filter name="group_by_vehiculo" string="Vehículo reparado"

@@ -8,13 +8,19 @@
 			<field name="arch" type="xml">
 				<form string="Formulario de vehículo">
 					<group string="Vehiculo">
+						<field name="modelo_id">
+							<tree>
+								<field name="nombre_modelo" />
+							</tree>
+						</field>
 						<field name="matricula" />
 						<field name="numero_bastidor" />
 						<field name="kilometros" />
+
 					</group>
-					<!-- <group string="Reparaciones">
+					<group string="Reparaciones">
 						<field name="reparacion_ids" />
-					</group> -->
+					</group>
 				</form>
 			</field>
 		</record>
@@ -25,9 +31,15 @@
 			<field name="model">upocar.vehiculo</field>
 			<field name="arch" type="xml">
 				<tree>
+					<field name="modelo_id">
+						<tree>
+							<field name="nombre_modelo" />
+						</tree>
+					</field>
 					<field name="matricula" />
 					<field name="numero_bastidor" />
 					<field name="kilometros" />
+					<field name="numero_reparaciones" />
 				</tree>
 			</field>
 		</record>
@@ -39,9 +51,9 @@
 		</record>
 
 		<menuitem name="Vehículos" id="upocar_vehiculos"
-			parent="upocar_root" sequence="100"/>
+			parent="upocar_root" sequence="100" />
 		<menuitem name="Ver vehículos" id="upocar_vehiculos_ver"
-			parent="upocar_vehiculos" action="act_vehiculo" sequence="100"/>
+			parent="upocar_vehiculos" action="act_vehiculo" sequence="100" />
 
 	</data>
 </odoo>

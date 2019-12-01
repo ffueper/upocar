@@ -11,7 +11,16 @@ class vehiculo(models.Model):
     matricula = fields.Char("Matrícula", required = True, size = 8)
     numero_bastidor = fields.Char("Número de bastidor", required = True, size=17)
     kilometros = fields.Integer("Kilómetros", required = True)
+    numero_reparaciones = fields.Integer("Número de reparaciones", compute="_compute_numero_reparaciones", readonly = True, store = True)
     
-    #reparacion_ids = fields.One2many("upocar.reparacion", "vehiculo_id", string="Reparaciones")
+    reparacion_ids = fields.One2many("upocar.reparacion", "vehiculo_id", string="Reparaciones")
     cliente_id = fields.Many2one("upocar.cliente", string="Dueño del vehiculo")
     modelo_id = fields.Many2one("upocar.modelo", string="Modelo del vehiculo")
+    
+    @api.depends('reparacion_ids')
+    def _compute_numero_reparaciones(self):
+        for record in self:
+            if record.reparacion_ids:
+                record.numero_reparaciones = len(record.reparacion_ids)
+            else:
+                record.numero_reparaciones = 0

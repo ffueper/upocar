@@ -17,11 +17,6 @@
 								<field name="nombre_modelo" />
 							</tree>
 						</field>
-						<field name="marca_id">
-							<tree>
-								<field name="nombre_marca" />
-							</tree>
-						</field>
 					</group>
 					<group string="Localización">
 						<field name="taller_id" />
@@ -43,19 +38,14 @@
 					<field name="precio" />
 					<field name="cantidad" />
 					<field name="modelo_id">
-							<tree>
-								<field name="nombre_modelo" />
-							</tree>
-					</field>
-					<field name="marca_id">
 						<tree>
-							<field name="nombre_marca" />
+							<field name="nombre_modelo" />
 						</tree>
 					</field>
 				</tree>
 			</field>
 		</record>
-		
+
 		<!-- VISTA GRAPH -->
 		<record model="ir.ui.view" id="library_book_graph">
 			<field name="name">Repuestos</field>
