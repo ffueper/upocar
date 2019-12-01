@@ -10,6 +10,7 @@
 						<field name="numero_factura" />
 						<field name="fecha_facturacion" />
 						<field name="descuento" />
+						<field name="iva" />
 						<field name="importe_total" />
 					</group>
 					<group string="Reparación">

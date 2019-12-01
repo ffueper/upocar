@@ -13,18 +13,15 @@ class factura(models.Model):
     descuento = fields.Float("Descuento aplicado", (3,2))
     importe_total = fields.Float("Importe total", (4,2), compute = "_get_importe_total", readonly = True, store = True)
     reparacion_id = fields.Many2one("upocar.reparacion", string="Reparacion")
+    iva=fields.Selection([(0.1,'10%'),
+                          (0.15,'15%'),
+                          (0.21,'21%')],
+                          'IVA')
     
-    #@api.depends('reparacion.horas_trabajadas')
-    #@api.onchange('reparacion_id')
-    #def _onchange_reparacion_id(self):
-        #self.importe_total = 10
-        #for record in self:
-        #    if record.reparacion.horas_trabajadas:
-        #        self.importe_total = 10 * record.reparacion.horas_trabajadas;
-    
-    @api.depends('reparacion_id.horas_trabajadas','reparacion_id.precio_hora','reparacion_id.numero_mecanicos','descuento')
+    @api.depends('reparacion_id.horas_trabajadas','reparacion_id.precio_hora','reparacion_id.numero_mecanicos','descuento','iva')
     def _get_importe_total(self):
         for record in self:
             if record.reparacion_id:
                 importe_parcial = record.reparacion_id.horas_trabajadas * record.reparacion_id.numero_mecanicos * record.reparacion_id.precio_hora
-                record.importe_total = importe_parcial - (importe_parcial * record.descuento/100)
+                importe_parcial = importe_parcial - (importe_parcial * record.descuento/100)
+                record.importe_total = importe_parcial + (importe_parcial * record.iva)
