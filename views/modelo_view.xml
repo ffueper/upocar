@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_modelo_form">
+			<field name="name">Modelo</field>
+			<field name="model">upocar.modelo</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de modelo">
+					<group string="Vehiculo">
+						<field name="nombre_modelo" />
+						<field name="marca_id">
+							<tree>
+								<field name="nombre_marca" />
+							</tree>
+						</field>
+					</group>
+					<group string="Repuestos">
+						<field name="repuesto_ids" />
+					</group>
+					<group string="Vehículos">
+						<field name="vehiculo_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_modelo_tree">
+			<field name="name">Modelos</field>
+			<field name="model">upocar.modelo</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="nombre_modelo" />
+					<field name="marca_id">
+						<tree>
+							<field name="nombre_marca" />
+						</tree>
+					</field>
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_modelo" model="ir.actions.act_window">
+			<field name="name">Modelos</field>
+			<field name="res_model">upocar.modelo</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Modelos" id="upocar_modelos"
+			parent="upocar_root" sequence="100" />
+		<menuitem name="Ver modelos" id="upocar_modelos_ver"
+			parent="upocar_modelos" action="act_modelo" sequence="100" />
+
+	</data>
+</odoo>

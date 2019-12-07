@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_marca_form">
+			<field name="name">Modelo</field>
+			<field name="model">upocar.marca</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de marca">
+					<group string="Vehiculo">
+						<field name="nombre_marca" />
+					</group>
+					<group string="Modelos">
+						<field name="modelo_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_marca_tree">
+			<field name="name">Marcas</field>
+			<field name="model">upocar.marca</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="nombre_marca" />
+					<field name="modelo_ids">
+						<tree>
+							<field name="nombre_modelo" />
+						</tree>
+					</field>
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_marca" model="ir.actions.act_window">
+			<field name="name">Marcas</field>
+			<field name="res_model">upocar.marca</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Marcas" id="upocar_marcas"
+			parent="upocar_root" sequence="100" />
+		<menuitem name="Ver marcas" id="upocar_marcas_ver"
+			parent="upocar_marcas" action="act_marca" sequence="100" />
+
+	</data>
+</odoo>
