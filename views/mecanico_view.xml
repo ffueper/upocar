@@ -6,14 +6,21 @@
 			<field name="model">upocar.mecanico</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de mecánico">
-					<group string="Reparación">
-						<field name="nombre" />
-						<field name="apellidos" />
-						<field name="especialidad" />
+					<group string="Mecánico">
+						<group>
+							<field name="nombre" />
+							<field name="apellidos" />
+						</group>
+						<group>
+							<field name="especialidad" />
+							<field name="num_reparaciones" />
+						</group>
 					</group>
-					<group string="Reparaciones">
-						<field name="reparacion_ids" />
-					</group>
+					<notebook>
+						<page string="Reparaciones">
+							<field name="reparacion_ids" />
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>

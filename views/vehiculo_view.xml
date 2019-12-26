@@ -7,20 +7,24 @@
 			<field name="model">upocar.vehiculo</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de vehículo">
-					<group string="Vehiculo">
-						<field name="modelo_id">
-							<tree>
-								<field name="nombre_modelo" />
-							</tree>
-						</field>
-						<field name="matricula" />
-						<field name="numero_bastidor" />
-						<field name="kilometros" />
-
+					<group string="Vehículo">
+						<group>
+							<field name="modelo_id" />
+							<field name="matricula" />
+						</group>
+						<group>
+							<field name="numero_bastidor" />
+							<field name="kilometros" />
+						</group>
 					</group>
-					<group string="Reparaciones">
-						<field name="reparacion_ids" />
-					</group>
+					<notebook>
+						<page string="Reparaciones">
+							<field name="reparacion_ids" />
+						</page>
+						<page string="Dueño del vehículo">
+							<field name="cliente_id" />
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>
@@ -40,6 +44,7 @@
 					<field name="numero_bastidor" />
 					<field name="kilometros" />
 					<field name="numero_reparaciones" />
+					<field name="cliente_id" />
 				</tree>
 			</field>
 		</record>

@@ -8,37 +8,30 @@
 			<field name="arch" type="xml">
 				<form string="Formulario de reparación">
 					<group string="Reparación">
-						<field name="descripcion" />
-						<field name="precio_hora" />
-						<field name="fecha_inicio" />
-						<field name="fecha_fin" />
-						<field name="numero_dias" />
-						<field name="numero_mecanicos" />
-						<field name="horas_trabajadas" />
+						<group>
+							<field name="descripcion" />
+							<field name="precio_hora" />
+							<field name="fecha_inicio" />
+							<field name="fecha_fin" />
+						</group>
+						<group>
+							<field name="numero_dias" />
+							<field name="numero_mecanicos" />
+							<field name="horas_trabajadas" />
+							<field name="vehiculo_id" />
+						</group>
 					</group>
-					<group string="Vehículo">
-						<field name="vehiculo_id" nolabel="1" colspan="4">
-							<tree>
-								<field name="matricula" />
-								<field name="numero_bastidor" />
-								<field name="kilometros" />
-							</tree>
-						</field>
-					</group>
-					<group string="Repuestos">
-						<field name="repuesto_ids" nolabel="1">
-							<tree>
-								<field name="descripcion" />
-								<field name="precio" />
-							</tree>
-						</field>
-					</group>
-					<group string="Mecánico/s">
-						<field name="mecanico_ids" nolabel="1" />
-					</group>
-					<group string="Factura">
-						<field name="factura_id" nolabel="1" />
-					</group>
+					<notebook>
+						<page string="Repuesto/s">
+							<field name="repuesto_ids" nolabel="1" />
+						</page>
+						<page string="Mecánico/s">
+							<field name="mecanico_ids" nolabel="1" />
+						</page>
+						<page string="Factura">
+							<field name="factura_id" nolabel="1" />
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>
