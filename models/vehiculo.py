@@ -14,6 +14,7 @@ class vehiculo(models.Model):
     numero_bastidor = fields.Char("Número de bastidor", required=True, size=17)
     kilometros = fields.Integer("Kilómetros", required=True)
     numero_reparaciones = fields.Integer("Número de reparaciones", compute="_compute_numero_reparaciones", readonly=True, store=True)
+    marca = fields.Char("Marca", compute="_compute_marca_from_modelo")
     
     reparacion_ids = fields.One2many("upocar.reparacion", "vehiculo_id", string="Reparaciones")
     cliente_id = fields.Many2one("upocar.cliente", string="Dueño del vehiculo")
@@ -26,3 +27,9 @@ class vehiculo(models.Model):
                 record.numero_reparaciones = len(record.reparacion_ids)
             else:
                 record.numero_reparaciones = 0
+
+    @api.depends('modelo_id')
+    def _compute_marca_from_modelo(self):
+        for record in self:
+            if record.modelo_id:
+                record.marca = record.modelo_id.marca_id.nombre_marca

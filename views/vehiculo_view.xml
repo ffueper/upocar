@@ -9,6 +9,7 @@
 				<form string="Formulario de vehículo">
 					<group string="Vehículo">
 						<group>
+							<field name="marca" />
 							<field name="modelo_id" />
 							<field name="matricula" />
 						</group>
@@ -35,11 +36,8 @@
 			<field name="model">upocar.vehiculo</field>
 			<field name="arch" type="xml">
 				<tree>
-					<field name="modelo_id">
-						<tree>
-							<field name="nombre_modelo" />
-						</tree>
-					</field>
+					<field name="marca" />
+					<field name="modelo_id" />
 					<field name="matricula" />
 					<field name="numero_bastidor" />
 					<field name="kilometros" />
