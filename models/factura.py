@@ -25,9 +25,9 @@ class factura(models.Model):
     def _get_importe_total(self):
         for record in self:
             if record.reparacion_id:
-                importe_parcial = record.reparacion_id.horas_trabajadas * record.reparacion_id.numero_mecanicos * record.reparacion_id.precio_hora
-                importe_parcial = importe_parcial - (importe_parcial * record.descuento / 100)
-                record.importe_total = importe_parcial + (importe_parcial * float(record.iva))
+                record.importe_total = record.reparacion_id.horas_trabajadas * record.reparacion_id.numero_mecanicos * record.reparacion_id.precio_hora
             if len(record.reparacion_id.repuesto_ids) > 0:
                 for repuesto in record.reparacion_id.repuesto_ids:
                     record.importe_total = record.importe_total + repuesto.precio * repuesto.cantidad
+            record.importe_total = record.importe_total - (record.importe_total * record.descuento / 100)
+            record.importe_total = record.importe_total + (record.importe_total * float(record.iva))
