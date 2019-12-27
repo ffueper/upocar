@@ -7,14 +7,16 @@
 			<field name="arch" type="xml">
 				<form string="Formulario de factura">
 					<group string="Factura">
-						<field name="numero_factura" />
-						<field name="fecha_facturacion" />
-						<field name="descuento" />
-						<field name="iva" />
-						<field name="importe_total" />
-					</group>
-					<group string="Reparación">
-						<field name="reparacion_id" />
+						<group>
+							<field name="numero_factura" />
+							<field name="fecha_facturacion" />
+							<field name="reparacion_id" />
+						</group>
+						<group>
+							<field name="descuento" />
+							<field name="iva" />
+							<field name="importe_total" />
+						</group>
 					</group>
 				</form>
 			</field>

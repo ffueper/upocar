@@ -21,7 +21,6 @@
 					<group string="Localización">
 						<field name="taller_id" />
 						<field name="proveedor_id" />
-						<field name="reparacion_id" />
 					</group>
 				</form>
 			</field>
