@@ -7,6 +7,13 @@
 			<field name="model">upocar.reparacion</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de reparación">
+					<header>
+						<button name="btn_submit_to_terminada" string="Terminar"
+							type="object" class="oe_highlight" states="en_proceso" />
+						<button name="btn_submit_to_facturada" string="Facturar"
+							type="object" class="oe_highlight" states="terminada" />
+						<field name='state' widget='statusbar' />
+					</header>
 					<group string="Reparación">
 						<group>
 							<field name="descripcion" />

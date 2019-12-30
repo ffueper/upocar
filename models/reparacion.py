@@ -16,13 +16,16 @@ class reparacion(models.Model):
     fecha_fin = fields.Datetime('Fin de la reparación', autodate=True)
     numero_mecanicos = fields.Integer("Número de mecánicos", compute="_compute_numero_mecanicos", readonly=True, size=8, store=True)
     numero_dias = fields.Integer("Número de días en la reparación", compute="_compute_numero_dias", size=8, readonly=True, store=True)
-    horas_trabajadas = fields.Float("Horas de mano de obra del/los mecanico/s", (4, 2), required=True)
+    horas_trabajadas = fields.Float("Horas de mano de obra del/los mecanico/s", (4, 2))
     precio_hora = fields.Selection([(20, "20€"),
                                     (25, "25€"),
                                     (30, "30€"),
                                     (35, "35€")], "Precio Hora")
+    state = fields.Selection([('en_proceso', 'En proceso'),
+                              ('terminada', 'Terminada'),
+                              ('facturada', 'Facturada'), ], 'Estado', default='en_proceso')
     
-    vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado")
+    vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado", required=True)
     factura_id = fields.Many2one("upocar.factura", string="Factura")
     repuesto_ids = fields.Many2many("upocar.repuesto", string="Repuestos utilizados")
     mecanico_ids = fields.Many2many("upocar.mecanico", string="Mecánico")
@@ -44,3 +47,31 @@ class reparacion(models.Model):
             if record.mecanico_ids:
                 record.numero_mecanicos = len(record.mecanico_ids)
                 
+    @api.one
+    def btn_submit_to_terminada(self):
+        error = ""
+        date_format = "%Y-%m-%d %H:%M:%S"
+        if self.precio_hora == False:
+            error += "Precio por hora incorrecto.\n"
+        if self.fecha_fin == False:
+            error += "Fecha fin no introducida.\n"
+        else:
+            dt1 = datetime.strptime(self.fecha_inicio, date_format)
+            dt2 = datetime.strptime(self.fecha_fin, date_format)
+            if dt1.__ge__(dt2):
+                error += "Fecha fin anterior a la fecha de inicio.\n"
+        if self.horas_trabajadas == 0:
+            error += "Horas de mano de obra debe ser mayor de 0.\n"
+        if len(self.mecanico_ids) < 1:
+            error += "Ningún mecánico seleccionado."
+        if len(error) > 0:
+            raise models.ValidationError("Error al terminar la reparación:\n" + error)
+        else:
+            self.write({"state":"terminada"})
+        
+    @api.one
+    def btn_submit_to_facturada(self):
+        if len(self.factura_id) > 0:
+            raise models.ValidationError("Error al facturar la reparación: No se ha seleccionado/creado ninguna factura")
+        else:
+            self.write({"state":"facturada"})
