@@ -30,7 +30,7 @@
 					</group>
 					<notebook>
 						<page string="Repuesto/s">
-							<field name="repuesto_ids" nolabel="1" />
+							<field name="linea_repuesto_ids" nolabel="1" />
 						</page>
 						<page string="Mecánico/s">
 							<field name="mecanico_ids" nolabel="1" />

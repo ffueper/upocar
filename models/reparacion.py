@@ -27,7 +27,7 @@ class reparacion(models.Model):
     
     vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado", required=True)
     factura_id = fields.Many2one("upocar.factura", string="Factura")
-    repuesto_ids = fields.Many2many("upocar.repuesto", string="Repuestos utilizados")
+    linea_repuesto_ids = fields.One2many("upocar.linea_repuesto", "reparacion_id", string="Repuestos utilizados")
     mecanico_ids = fields.Many2many("upocar.mecanico", string="Mecánico")
     taller_id = fields.Many2one("upocar.taller", string="Taller")
     
@@ -67,6 +67,8 @@ class reparacion(models.Model):
         if len(error) > 0:
             raise models.ValidationError("Error al terminar la reparación:\n" + error)
         else:
+            for linea_repuesto in self.linea_repuesto_ids:
+                linea_repuesto.repuesto_id.cantidad -= linea_repuesto.cantidad
             self.write({"state":"terminada"})
         
     @api.one

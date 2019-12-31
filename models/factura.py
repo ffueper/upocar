@@ -26,8 +26,8 @@ class factura(models.Model):
         for record in self:
             if record.reparacion_id:
                 record.importe_total = record.reparacion_id.horas_trabajadas * record.reparacion_id.numero_mecanicos * record.reparacion_id.precio_hora
-            if len(record.reparacion_id.repuesto_ids) > 0:
-                for repuesto in record.reparacion_id.repuesto_ids:
-                    record.importe_total = record.importe_total + repuesto.precio * repuesto.cantidad
+            #if len(record.reparacion_id.repuesto_ids) > 0:
+            #    for repuesto in record.reparacion_id.repuesto_ids:
+            #        record.importe_total = record.importe_total + repuesto.precio * repuesto.cantidad
             record.importe_total = record.importe_total - (record.importe_total * record.descuento / 100)
             record.importe_total = record.importe_total + (record.importe_total * float(record.iva))

@@ -7,8 +7,8 @@
     'category': 'UPOCAR',
     'version': '0.1',
     'depends': ['base'],
-    'data': ['views/reparacion_view.xml','views/vehiculo_view.xml','views/mecanico_view.xml','views/factura_view.xml',
-             'views/taller_view.xml', 'views/repuesto_view.xml','views/modelo_view.xml','views/marca_view.xml'],
+    'data': ['views/reparacion_view.xml', 'views/vehiculo_view.xml', 'views/mecanico_view.xml', 'views/factura_view.xml',
+             'views/taller_view.xml', 'views/repuesto_view.xml', 'views/modelo_view.xml', 'views/marca_view.xml', 'views/linea_repuesto_view.xml'],
     'demo': [],
     'application': True
 }
