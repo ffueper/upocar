@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="upocar_proveedor_form">
+			<field name="name">upocar_proveedor_form</field>
+			<field name="model">upocar.proveedor</field>
+			<field name="arch" type="xml">
+				<form string="form_proveedor">
+					<group string="Proveedor">
+						<field name="nombre" />
+						<field name="cif" />
+						<field name="telefono" />
+						<field name="direccion" />
+						<field name="email" />
+					</group>
+					<!--  <group colspan="2">
+						<field name="repuesto_ids">
+							<tree>
+								<field name="" />
+								<field name="" />
+							</tree>
+						</field>
+					</group>
+					-->
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="upocar_proveedor_tree_view">
+			<field name="name">view_upocar_proveedor_tree</field>
+			<field name="model">upocar.proveedor</field>
+			<field name="arch" type="xml">
+				<tree string="tree_proveedor">
+					<field name="nombre" />
+					<field name="cif" />
+					<field name="telefono" />
+					<field name="email" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="upocar_proveedor_search">
+            <field name="name">upocar_proveedor_search</field>
+            <field name="model">upocar.proveedor</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Proveedor">
+                	<field name="nombre"/>
+                    <field name="cif"/>
+                    <field name="telefono"/>
+                    <field name="direccion"/>
+                    <field name="email"/>
+                    <separator orientation="vertical" />
+                </search>
+            </field>
+        </record>
+
+
+		<record id="act_proveedor" model="ir.actions.act_window">
+			<field name="name">Proveedor</field>
+			<field name="res_model">upocar.proveedor</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Proveedor" id="upocar_proveedor_submenu"
+			parent="upocar_root"  sequence="50" />
+		<menuitem name="Ver proveedor" id="ver_proveedor_submenu"
+			parent="upocar_proveedor_submenu" sequence="110"
+			action="act_proveedor" />
+	</data>
+</odoo> 
