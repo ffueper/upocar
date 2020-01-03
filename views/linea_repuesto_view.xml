@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_linea_repuesto_form">
+			<field name="name">upocar_linea_repuesto_form</field>
+			<field name="model">upocar.linea_repuesto</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de línea repuesto">
+					<group string="Línea repuesto">
+						<group>
+							<field name="repuesto_id" />
+						</group>
+						<group>
+							<field name="stock" />
+							<field name="cantidad" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_linea_repuesto_tree">
+			<field name="name">upocar_linea_repuesto_tree</field>
+			<field name="model">upocar.linea_repuesto</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="repuesto_id" />
+					<field name="cantidad" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_linea_repuesto" model="ir.actions.act_window">
+			<field name="name">Línea repuesto</field>
+			<field name="res_model">upocar.linea_repuesto</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</odoo>

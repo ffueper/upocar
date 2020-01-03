@@ -64,6 +64,14 @@ class reparacion(models.Model):
             error += "Horas de mano de obra debe ser mayor de 0.\n"
         if len(self.mecanico_ids) < 1:
             error += "Ningún mecánico seleccionado."
+        for linea_repuesto in self.linea_repuesto_ids:
+            count = 0
+            for linea_repuesto2 in self.linea_repuesto_ids:
+                if linea_repuesto.repuesto_id == linea_repuesto2.repuesto_id:
+                    count += 1
+            if count >= 2:
+                error += "Repuesto repetido"
+                break
         if len(error) > 0:
             raise models.ValidationError("Error al terminar la reparación:\n" + error)
         else:
