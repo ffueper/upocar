@@ -16,6 +16,8 @@ class vehiculo(models.Model):
     numero_reparaciones = fields.Integer("Número de reparaciones", compute="_compute_numero_reparaciones", readonly=True, store=True)
     marca = fields.Char("Marca", compute="_compute_marca_from_modelo")
     
+    _sql_constraints = [('vehiculo_matricula_unique','UNIQUE (matricula)','La matricula debe ser única'),('vehiculo_numero_bastidor_unique','UNIQUE (numero_bastidor)','El numero de bastidor debe ser único')]
+    
     reparacion_ids = fields.One2many("upocar.reparacion", "vehiculo_id", string="Reparaciones")
     cliente_id = fields.Many2one("upocar.cliente", string="Dueño del vehiculo")
     modelo_id = fields.Many2one("upocar.modelo", string="Modelo del vehiculo")

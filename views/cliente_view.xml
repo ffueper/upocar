@@ -7,18 +7,22 @@
 			<field name="arch" type="xml">
 				<form string="form_cliente">
 					<group string="Cliente">
-							<field name="nombre" />
-							<field name="apellidos" />
-							<field name="dni" />
-							<field name="telefono" />
+						<field name="nombre" />
+						<field name="apellidos" />
+						<field name="dni" />
+						<field name="telefono" />
 					</group>
-					<!--  <field name="vehiculos_ids">
-							<tree>
-								<field name="" />
-								<field name="" />
-							</tree>
-						</field>
-						-->
+					<notebook>
+						<page string="Vehiculos del cliente">
+							<field name="vehiculo_id">
+								<tree>
+									<field name="marca" />
+									<field name="modelo_id" />
+									<field name="matricula" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>
@@ -35,31 +39,31 @@
 				</tree>
 			</field>
 		</record>
-		
-		<record model="ir.ui.view" id="upocar_cliente_search">
-		            <field name="name">upocar_cliente_search</field>
-		            <field name="model">upocar.cliente</field>
-		            <field name="type">search</field>
-		            <field name="arch" type="xml">
-		                <search string="Cliente">
-		                	<field name="nombre"/>
-		                    <field name="dni"/>
-		                    <field name="apellidos"/>
-		                    <field name="telefono"/>
-		                    <separator orientation="vertical" />
-		                </search>
-		            </field>
-		        </record>
 
-		
+		<record model="ir.ui.view" id="upocar_cliente_search">
+			<field name="name">upocar_cliente_search</field>
+			<field name="model">upocar.cliente</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Cliente">
+					<field name="nombre" />
+					<field name="dni" />
+					<field name="apellidos" />
+					<field name="telefono" />
+					<separator orientation="vertical" />
+				</search>
+			</field>
+		</record>
+
+
 		<record id="act_cliente" model="ir.actions.act_window">
 			<field name="name">Cliente</field>
 			<field name="res_model">upocar.cliente</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		
-		<menuitem name="Cliente" id="upocar_cliente_submenu" parent="upocar_root" 
-			sequence="50" />
+
+		<menuitem name="Cliente" id="upocar_cliente_submenu"
+			parent="upocar_root" sequence="50" />
 		<menuitem name="Ver Cliente" id="ver_cliente_submenu"
 			parent="upocar_cliente_submenu" sequence="110" action="act_cliente" />
 	</data>
