@@ -7,8 +7,8 @@ Created on 27 nov. 2019
 from odoo import models, fields, api
 
 
-class linea_repuesto(models.Model):
-    _name = 'upocar.linea_repuesto'
+class linea_reparacion(models.Model):
+    _name = 'upocar.linea_reparacion'
     
     cantidad = fields.Integer("Cantidad", size=3)
     stock = fields.Integer("Stock", size=3, compute="compute_stock", readonly=True)

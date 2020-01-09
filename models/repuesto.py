@@ -18,4 +18,4 @@ class repuesto(models.Model):
     taller_id = fields.Many2one("upocar.taller", "Taller")
     modelo_id = fields.Many2one('upocar.modelo', "Modelo")
     proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor")
-    linea_repuesto_ids = fields.One2many("upocar.linea_repuesto", "repuesto_id", string="Líneas repuesto")
+    linea_reparacion_ids = fields.One2many("upocar.linea_reparacion", "repuesto_id", string="Líneas reparacion")

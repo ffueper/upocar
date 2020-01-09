@@ -32,7 +32,7 @@ class reparacion(models.Model):
                               ('facturada', 'Facturada'), ], 'Estado', default='en_proceso')
     
     vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado", required=True)
-    linea_repuesto_ids = fields.One2many("upocar.linea_repuesto", "reparacion_id", string="Repuestos utilizados")
+    linea_reparacion_ids = fields.One2many("upocar.linea_reparacion", "reparacion_id", string="Repuestos utilizados")
     mecanico_ids = fields.Many2many("upocar.mecanico", string="Mecánicos")
     taller_id = fields.Many2one("upocar.taller", string="Taller")
     
