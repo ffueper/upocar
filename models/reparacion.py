@@ -52,7 +52,7 @@ class reparacion(models.Model):
             if record.mecanico_ids:
                 record.numero_mecanicos = len(record.mecanico_ids)
     
-    @api.depends('descuento', 'iva', 'linea_reparacion_ids', 'precio_hora')
+    @api.depends('descuento', 'iva', 'linea_reparacion_ids', 'precio_hora', 'mecanico_ids')
     def _get_importe_total(self):
         for record in self:
             if record.horas_trabajadas > 0 and record.numero_mecanicos > 0 and record.precio_hora != False:
@@ -60,8 +60,8 @@ class reparacion(models.Model):
             if len(record.linea_reparacion_ids) > 0:
                 for repuesto in record.linea_reparacion_ids:
                     record.importe_total = record.importe_total + repuesto.repuesto_id.precio * repuesto.cantidad
-            record.importe_total -= record.importe_total * record.descuento / 100
             record.importe_total += record.importe_total * float(record.iva)
+            record.importe_total -= record.importe_total * record.descuento / 100
     
     @api.onchange('fecha_fin', 'fecha_inicio')
     def _check_date(self):
@@ -72,32 +72,32 @@ class reparacion(models.Model):
             if dt2.__le__(dt1):
                 raise models.ValidationError("Error, la fecha fin debe ser posterior a la fecha inicio")
                 
-    @api.onchange('linea_reparacion_ids')
-    def _check_repetitions(self):
+    @api.onchange('linea_reparacion_ids', 'taller_id')
+    def _check_repetitions_linea_reparacion(self):
         for linea_reparacion in self.linea_reparacion_ids:
             count = 0
             for linea_reparacion2 in self.linea_reparacion_ids:
-                if linea_reparacion.repuesto_id == linea_reparacion2.repuesto_id:
+                if linea_reparacion.repuesto_id.__eq__(linea_reparacion2.repuesto_id):
                     count += 1
             if count > 1:
-                raise models.ValidationError("Repuesto \"" + linea_reparacion.repuesto_id.nombre_repuesto + "\" repetido.")
+                raise models.ValidationError("Repuesto \"" + linea_reparacion.repuesto_id.nombre_repuesto + "\" repetido. Aumenta la cantidad")
                 break
+    
+    @api.onchange('mecanico_ids', 'taller_id')
+    def _check_taller_in_mecanico(self):
+        for mecanico in self.mecanico_ids:
+            if not mecanico.taller_id.__eq__(self.taller_id):
+                raise models.ValidationError("Error, el mecánico seleccionado no está en el taller en el que se realiza la reparación.")
             
     @api.one
     def btn_submit_to_terminada(self):
         error = ""
         repuesto = ""
-        date_format = "%Y-%m-%d %H:%M:%S"
         if self.precio_hora == False:
             error += "Precio por hora incorrecto.\n"
         if self.fecha_fin == False:
             error += "Fecha fin no introducida.\n"
-        else:
-            dt1 = datetime.strptime(self.fecha_inicio, date_format)
-            dt2 = datetime.strptime(self.fecha_fin, date_format)
-            if dt1.__ge__(dt2):
-                error += "Fecha fin anterior a la fecha de inicio.\n"
-        if self.horas_trabajadas == 0:
+        if self.horas_trabajadas <= 0:
             error += "Horas de mano de obra debe ser mayor de 0.\n"
         if len(self.mecanico_ids) < 1:
             error += "Ningún mecánico seleccionado.\n"
