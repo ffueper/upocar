@@ -18,13 +18,16 @@
 							attrs="{'invisible':[('hide', '=', True)]}" />
 						<field name="city" />
 					</group>
-					<group colspan="2">
+					<notebook>
+						<page string="Proveedores">
 						<field name="proveedor_ids">
 							<tree>
 								<field name="nombre" />
 								<field name="cif" />
 							</tree>
 						</field>
+						</page>
+						<page string="Clientes">
 						<field name="cliente_ids">
 							<tree>
 								<field name="nombre" />
@@ -32,7 +35,17 @@
 								<field name="dni" />
 							</tree>
 						</field>
-					</group>
+						</page>
+						<page string="Reparación">
+						<field name="reparacion_ids"/>
+						</page>
+						<page string="Mecanicos">
+						<field name="mecanico_ids"/>
+						</page>
+						<page string="Repuestos">
+						<field name="repuesto_ids"/>
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>

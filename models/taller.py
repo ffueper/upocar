@@ -36,6 +36,7 @@ class taller(models.Model):
     
     proveedor_ids=fields.Many2many("upocar.proveedor",string="Proveedor del taller")
     cliente_ids=fields.Many2many("upocar.cliente",string="Cliente del taller")
-    #reparacion_ids=fields.One2many("upocar.reparacion", "reparacion_id", string = "Reparaciones del taller")
-    #mecanico_ids=fields.One2many("upocar.mecanico","mecanico_id",string = "Mecanicos del taller")
-    #repuesto_ids=fields.One2many("upocar.repuesto","repuesto_id",string = "Repuestos del taller")
+    
+    reparacion_ids=fields.One2many("upocar.reparacion", "taller_id", string = "Reparaciones del taller")
+    mecanico_ids=fields.One2many("upocar.mecanico","taller_id",string = "Mecanicos del taller")
+    repuesto_ids=fields.One2many("upocar.repuesto","taller_id",string = "Repuestos del taller")
