@@ -11,11 +11,11 @@
 						<group>
 							<field name="marca" />
 							<field name="modelo_id" />
-							<field name="matricula" />
+							<field name="kilometros" />
 						</group>
 						<group>
 							<field name="numero_bastidor" />
-							<field name="kilometros" />
+							<field name="matricula" />
 						</group>
 					</group>
 					<notebook>

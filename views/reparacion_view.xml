@@ -16,6 +16,7 @@
 					</header>
 					<group string="Reparación">
 						<group>
+							<field name="taller_id" />
 							<field name="descripcion" />
 							<field name="fecha_inicio" />
 							<field name="fecha_fin" />
@@ -33,10 +34,12 @@
 					</group>
 					<notebook>
 						<page string="Repuesto/s">
-							<field name="linea_repuesto_ids" nolabel="1" attrs="{'readonly':['|',('state','!=','en_proceso')]}" />
+							<field name="linea_reparacion_ids" nolabel="1"
+								attrs="{'readonly':['|',('state','!=','en_proceso')]}" />
 						</page>
 						<page string="Mecánico/s">
-							<field name="mecanico_ids" nolabel="1" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="mecanico_ids" nolabel="1"
+								attrs="{'readonly':['|',('state','!=','en_proceso')]}" />
 						</page>
 					</notebook>
 				</form>
@@ -55,6 +58,7 @@
 					<field name="numero_dias" />
 					<field name="numero_mecanicos" />
 					<field name="horas_trabajadas" />
+					<field name="taller_id" />
 				</tree>
 			</field>
 		</record>
@@ -83,6 +87,7 @@
 					<field name="descripcion" />
 					<field name="fecha_inicio" />
 					<field name="fecha_fin" />
+					<field name="vehiculo_id" />
 					<filter string="Reparaciones no terminadas"
 						domain="[('fecha_fin','=',None)]" />
 					<filter string="Más de un mecánico"
@@ -93,6 +98,8 @@
 							context="{'group_by':'vehiculo_id'}" />
 						<filter name="group_by_descripción" string="Descripción"
 							context="{'group_by':'descripcion'}" />
+						<filter name="group_by_taller" string="Taller"
+							context="{'group_by':'taller_id'}" />
 					</group>
 				</search>
 			</field>

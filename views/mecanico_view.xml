@@ -8,6 +8,7 @@
 				<form string="Formulario de mecánico">
 					<group string="Mecánico">
 						<group>
+							<field name="taller_id" />
 							<field name="nombre" />
 							<field name="apellidos" />
 						</group>
@@ -34,7 +35,30 @@
 					<field name="nombre" />
 					<field name="apellidos" />
 					<field name="especialidad" />
+					<field name="taller_id" />
+					<field name="num_reparaciones" />
 				</tree>
+			</field>
+		</record>
+
+		<!-- VISTA SEARCH -->
+		<record model="ir.ui.view" id="upocar_mecanico_search">
+			<field name="name">upocar_mecanico_search</field>
+			<field name="model">upocar.mecanico</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Mecánicos">
+					<field name="nombre" />
+					<field name="apellidos" />
+					<field name="especialidad" />
+					<filter string="Más de una reparación"
+						domain="[('num_reparaciones','>',1)]" />
+					<separator orientation="vertical" />
+					<group expand="0" string="Agrupar por...">
+						<filter name="group_by_taller" string="Taller"
+							context="{'group_by':'taller_id'}" />
+					</group>
+				</search>
 			</field>
 		</record>
 

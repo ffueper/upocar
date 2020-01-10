@@ -34,7 +34,7 @@ class reparacion(models.Model):
     vehiculo_id = fields.Many2one("upocar.vehiculo", string="Vehículo reparado", required=True)
     linea_reparacion_ids = fields.One2many("upocar.linea_reparacion", "reparacion_id", string="Repuestos utilizados")
     mecanico_ids = fields.Many2many("upocar.mecanico", string="Mecánicos")
-    taller_id = fields.Many2one("upocar.taller", string="Taller")
+    taller_id = fields.Many2one("upocar.taller", string="Taller", required=True)
     
     @api.depends('fecha_inicio', 'fecha_fin')
     def _compute_numero_dias(self):
@@ -52,18 +52,18 @@ class reparacion(models.Model):
             if record.mecanico_ids:
                 record.numero_mecanicos = len(record.mecanico_ids)
     
-    @api.depends('descuento', 'iva', 'linea_repuesto_ids', 'precio_hora')
+    @api.depends('descuento', 'iva', 'linea_reparacion_ids', 'precio_hora')
     def _get_importe_total(self):
         for record in self:
             if record.horas_trabajadas > 0 and record.numero_mecanicos > 0 and record.precio_hora != False:
                 record.importe_total = record.horas_trabajadas * record.numero_mecanicos * record.precio_hora
-            if len(record.linea_repuesto_ids) > 0:
-                for repuesto in record.linea_repuesto_ids:
+            if len(record.linea_reparacion_ids) > 0:
+                for repuesto in record.linea_reparacion_ids:
                     record.importe_total = record.importe_total + repuesto.repuesto_id.precio * repuesto.cantidad
             record.importe_total -= record.importe_total * record.descuento / 100
             record.importe_total += record.importe_total * float(record.iva)
     
-    @api.onchange('fecha_fin','fecha_inicio')
+    @api.onchange('fecha_fin', 'fecha_inicio')
     def _check_date(self):
         date_format = "%Y-%m-%d %H:%M:%S"
         if self.fecha_inicio and self.fecha_fin:
@@ -72,15 +72,15 @@ class reparacion(models.Model):
             if dt2.__le__(dt1):
                 raise models.ValidationError("Error, la fecha fin debe ser posterior a la fecha inicio")
                 
-    @api.onchange('linea_repuesto_ids')
+    @api.onchange('linea_reparacion_ids')
     def _check_repetitions(self):
-        for linea_repuesto in self.linea_repuesto_ids:
+        for linea_reparacion in self.linea_reparacion_ids:
             count = 0
-            for linea_repuesto2 in self.linea_repuesto_ids:
-                if linea_repuesto.repuesto_id == linea_repuesto2.repuesto_id:
+            for linea_reparacion2 in self.linea_reparacion_ids:
+                if linea_reparacion.repuesto_id == linea_reparacion2.repuesto_id:
                     count += 1
             if count > 1:
-                raise models.ValidationError("Repuesto \"" + linea_repuesto.repuesto_id.nombre_repuesto + "\" repetido.")
+                raise models.ValidationError("Repuesto \"" + linea_reparacion.repuesto_id.nombre_repuesto + "\" repetido.")
                 break
             
     @api.one
@@ -101,18 +101,18 @@ class reparacion(models.Model):
             error += "Horas de mano de obra debe ser mayor de 0.\n"
         if len(self.mecanico_ids) < 1:
             error += "Ningún mecánico seleccionado.\n"
-        if len(self.linea_repuesto_ids) > 0:
-            for linea_repuesto in self.linea_repuesto_ids:
-                if linea_repuesto.repuesto_id.cantidad < linea_repuesto.cantidad:
-                    repuesto = linea_repuesto.repuesto_id.nombre_repuesto
+        if len(self.linea_reparacion_ids) > 0:
+            for linea_reparacion in self.linea_reparacion_ids:
+                if linea_reparacion.repuesto_id.cantidad < linea_reparacion.cantidad:
+                    repuesto = linea_reparacion.repuesto_id.nombre_repuesto
                     break
-            if len(repuesto)>0:
+            if len(repuesto) > 0:
                 error += "Stock insuficiente para el repuesto \"" + repuesto + "\", puede que se haya utilizado en otra reparación."
         if len(error) > 0:
             raise models.ValidationError("Error al terminar la reparación:\n" + error)
         else:
-            for linea_repuesto in self.linea_repuesto_ids:
-                linea_repuesto.repuesto_id.cantidad -= linea_repuesto.cantidad
+            for linea_reparacion in self.linea_reparacion_ids:
+                linea_reparacion.repuesto_id.cantidad -= linea_reparacion.cantidad
             self.write({"state":"terminada"})
         
     @api.one

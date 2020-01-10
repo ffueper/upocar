@@ -16,7 +16,7 @@ class mecanico(models.Model):
     num_reparaciones = fields.Integer(string="Número de reparaciones", compute="_compute_num_reparaciones", store=True)
     
     reparacion_ids = fields.Many2many("upocar.reparacion", string="Reparaciones")
-    taller_id = fields.Many2one("upocar.taller", string="Taller")
+    taller_id = fields.Many2one("upocar.taller", string="Taller", required=True)
     
     nombre_apellidos = fields.Char(compute="_compute_nombre_apellidos")
     
