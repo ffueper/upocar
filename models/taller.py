@@ -34,7 +34,6 @@ class taller(models.Model):
             self.hide = True
    
     
-    proveedor_ids=fields.Many2many("upocar.proveedor",string="Proveedor del taller")
     cliente_ids=fields.Many2many("upocar.cliente",string="Cliente del taller")
     
     reparacion_ids=fields.One2many("upocar.reparacion", "taller_id", string = "Reparaciones del taller")

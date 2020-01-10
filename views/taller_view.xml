@@ -19,14 +19,6 @@
 						<field name="city" />
 					</group>
 					<notebook>
-						<page string="Proveedores">
-						<field name="proveedor_ids">
-							<tree>
-								<field name="nombre" />
-								<field name="cif" />
-							</tree>
-						</field>
-						</page>
 						<page string="Clientes">
 						<field name="cliente_ids">
 							<tree>
