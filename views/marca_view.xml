@@ -32,11 +32,21 @@
 				</tree>
 			</field>
 		</record>
+		<!-- VISTA GRAPH -->
+		<record model="ir.ui.view" id="library_book_graph">
+			<field name="name">Marca</field>
+			<field name="model">upocar.marca</field>
+			<field name="arch" type="xml">
+				<graph string="Marca" type="bar">
+					<field name="nombre_marca" type="row" />
+				</graph>
+			</field>
+		</record>
 
 		<record id="act_marca" model="ir.actions.act_window">
 			<field name="name">Marcas</field>
 			<field name="res_model">upocar.marca</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 		</record>
 
 		<menuitem name="Marcas" id="upocar_marcas"

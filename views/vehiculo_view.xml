@@ -47,6 +47,33 @@
 			</field>
 		</record>
 
+		<!-- VISTA SEARCH -->
+		<record model="ir.ui.view" id="upocar_vehiculo_search">
+			<field name="name">upocar_vehiculo_search</field>
+			<field name="model">upocar.vehiculo</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Vehiculo">
+					<field name="matricula" />
+					<field name="numero_bastidor" />
+					<field name="marca" />
+					<field name="cliente_id" />
+					<field name="modelo_id" />
+					
+					<group expand="0" string="Agrupar por...">
+						<filter name="group_by_marca" string="Marca"
+							context="{'group_by':'marca'}" />
+
+						<filter name="group_by_cliente" string="Cliente"
+							context="{'group_by':'cliente_id'}" />
+
+						<filter name="group_by_modelo" string="Modelo"
+							context="{'group_by':'modelo_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
 		<record id="act_vehiculo" model="ir.actions.act_window">
 			<field name="name">Vehículos</field>
 			<field name="res_model">upocar.vehiculo</field>

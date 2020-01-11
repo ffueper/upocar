@@ -40,11 +40,22 @@
 				</tree>
 			</field>
 		</record>
+		
+		<!-- VISTA GRAPH -->
+		<record model="ir.ui.view" id="library_book_graph">
+			<field name="name">Modelo</field>
+			<field name="model">upocar.modelo</field>
+			<field name="arch" type="xml">
+				<graph string="Modelo" type="bar">
+					<field name="nombre_modelo" type="row" />
+				</graph>
+			</field>
+		</record>
 
 		<record id="act_modelo" model="ir.actions.act_window">
 			<field name="name">Modelos</field>
 			<field name="res_model">upocar.modelo</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 		</record>
 
 		<menuitem name="Modelos" id="upocar_modelos"
