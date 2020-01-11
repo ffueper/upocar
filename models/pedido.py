@@ -16,17 +16,16 @@ class pedido(models.Model):
     
     taller_id = fields.Many2one("upocar.taller", "Taller", required=True)
     proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor", required=True)
-    linea_pedido_ids = fields.One2many("upocar.linea_pedido","pedido_id", string="Líneas reparacion")
+    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas reparacion")
     state = fields.Selection([('pendiente', 'Pendiente de aprobación'),
                               ('pagado', 'Pagado'),
                               ('entregado', 'Entregado'), ], 'Estado', default='pendiente')
     
     _sql_constraints = [('pedido_identificador_unique', 'UNIQUE (identificador)', 'El identificador debe ser único')]
-
     
     @api.one
     def btn_submit_to_pagado(self):
-        if len(self.linea_pedido_ids)<1:
+        if len(self.linea_pedido_ids) < 1:
             raise models.ValidationError('Debe de crear al menos 1 linea de pedidos')
         else:
             self.write({"state":"pagado"})
@@ -34,5 +33,5 @@ class pedido(models.Model):
     @api.one
     def btn_submit_to_entregado(self):
         for linea in self.linea_pedido_ids:
-            linea.repuesto_id.cantidad+=linea.cantidad
+            linea.repuesto_id.stock += linea.cantidad
         self.write({"state":"entregado"})

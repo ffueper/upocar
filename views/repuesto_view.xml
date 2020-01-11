@@ -11,7 +11,7 @@
 						<field name="nombre_repuesto" />
 						<field name="descripcion" />
 						<field name="precio" />
-						<field name="cantidad" />
+						<field name="stock" />
 						<field name="modelo_id">
 							<tree>
 								<field name="nombre_modelo" />
@@ -35,7 +35,7 @@
 					<field name="nombre_repuesto" />
 					<field name="descripcion" />
 					<field name="precio" />
-					<field name="cantidad" />
+					<field name="stock" />
 					<field name="modelo_id">
 						<tree>
 							<field name="nombre_modelo" />
@@ -52,7 +52,7 @@
 			<field name="arch" type="xml">
 				<graph string="Unidades por repuesto" type="bar">
 					<field name="nombre_repuesto" type="row" />
-					<field name="cantidad" type="measure" />
+					<field name="stock" type="measure" />
 				</graph>
 			</field>
 		</record>

@@ -13,7 +13,7 @@ class repuesto(models.Model):
     nombre_repuesto = fields.Char('Nombre', size=64, required=True)
     descripcion = fields.Char('Descripcion', size=256, required=True)
     precio = fields.Float('Precio', (7, 2))
-    cantidad = fields.Integer("Cantidad",size=3)
+    stock = fields.Integer("Stock",size=3)
     
     taller_ids = fields.Many2many("upocar.taller", string="Taller")
     
