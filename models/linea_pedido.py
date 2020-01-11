@@ -30,9 +30,10 @@ class linea_pedido(models.Model):
     @api.constrains("repuesto_id")
     def _check_repuesto_in_taller(self):
         encontrado=False
+
         for taller in self.repuesto_id.taller_ids:
             if taller == self.pedido_id.taller_id:
                 encontrado=True
                 break
         if not encontrado:
-            raise models.ValidationError("Error: se debe introducir un repuesto del mismo taller")
+            raise models.ValidationError("Error: se debe introducir el repuesto: "+self.repuesto_id.nombre_repuesto+" al  taller: "+self.pedido_id.taller_id.nombre)
