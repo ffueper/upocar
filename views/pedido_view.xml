@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_pedido_form">
+			<field name="name">upocar_pedido_form</field>
+			<field name="model">upocar.pedido</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de pedido">
+					<group string="Pedido">
+						<field name="identificador" />
+						<field name="taller_id" />
+						<field name="proveedor_id" />
+						<field name="linea_pedido_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_pedido_tree">
+			<field name="name">upocar_pedido_tree</field>
+			<field name="model">upocar.pedido</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="identificador" />
+					<field name="taller_id" />
+					<field name="proveedor_id" />
+					<field name="linea_pedido_ids" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_pedido" model="ir.actions.act_window">
+			<field name="name">Pedido</field>
+			<field name="res_model">upocar.pedido</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Pedidos" id="upocar_pedido"
+			parent="upocar_root" />
+		<menuitem name="Ver pedidos" id="upocar_pedido_ver"
+			parent="upocar_pedido" action="act_pedido" />
+
+	</data>
+</odoo>

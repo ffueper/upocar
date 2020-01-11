@@ -39,3 +39,5 @@ class taller(models.Model):
     reparacion_ids=fields.One2many("upocar.reparacion", "taller_id", string = "Reparaciones del taller")
     mecanico_ids=fields.One2many("upocar.mecanico","taller_id",string = "Mecanicos del taller")
     repuesto_ids=fields.One2many("upocar.repuesto","taller_id",string = "Repuestos del taller")
+    
+    pedido_ids=fields.One2many("upocar.pedido","taller_id",string = "Pedidos del taller")

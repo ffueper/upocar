@@ -15,3 +15,6 @@ class proveedor(models.Model):
     
     taller_ids=fields.Many2many("upocar.taller",string="Talleres del proveedor")
     #repuesto_ids=fields.One2many("upocar.repuesto", "repuesto_ids", string = "Repuestos del proveedor")
+    
+    pedido_ids=fields.One2many("upocar.pedido","proveedor_id",string ="Pedidos al proveedor")
+
