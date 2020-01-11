@@ -14,7 +14,7 @@ class vehiculo(models.Model):
     numero_bastidor = fields.Char("Número de bastidor", required=True, size=17)
     kilometros = fields.Integer("Kilómetros", required=True)
     numero_reparaciones = fields.Integer("Número de reparaciones", compute="_compute_numero_reparaciones", readonly=True, store=True)
-    marca = fields.Char("Marca", compute="_compute_marca_from_modelo")
+    marca = fields.Char("Marca", compute="_compute_marca_from_modelo", store=True)
     
     _sql_constraints = [('vehiculo_matricula_unique', 'UNIQUE (matricula)', 'La matricula debe ser única'), ('vehiculo_numero_bastidor_unique', 'UNIQUE (numero_bastidor)', 'El numero de bastidor debe ser único')]
     
