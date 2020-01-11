@@ -14,7 +14,7 @@ class proveedor(models.Model):
     direccion = fields.Char("Direccion del proveedor",size=64)
     email = fields.Char("Correo electronico del proveedor",size=64)
     
-    taller_ids=fields.Many2many("upocar.taller",string="Talleres del proveedor")
-    
     pedido_ids=fields.One2many("upocar.pedido","proveedor_id",string ="Pedidos al proveedor")
+    
+    _sql_constraints = [('proveedor_cif_unique','UNIQUE (cif)','El cif debe ser único')]
 
