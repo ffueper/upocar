@@ -89,7 +89,9 @@
 					<field name="fecha_fin" />
 					<field name="vehiculo_id" />
 					<filter string="Reparaciones no terminadas"
-						domain="[('fecha_fin','=',None)]" />
+						domain="[('state','=','en_proceso')]" />
+					<filter string="Reparaciones terminadas"
+						domain="[('state','=','terminada')]" />
 					<filter string="Más de un mecánico"
 						domain="[('numero_mecanicos','>',1)]" />
 					<separator orientation="vertical" />

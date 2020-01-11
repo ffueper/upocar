@@ -50,4 +50,4 @@ class linea_reparacion(models.Model):
     @api.depends("repuesto_id")
     def compute_stock(self):
         if self.repuesto_id:
-            self.stock = self.repuesto_id.cantidad
+            self.stock = self.repuesto_id.stock
