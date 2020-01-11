@@ -58,8 +58,8 @@ class reparacion(models.Model):
             if record.horas_trabajadas > 0 and record.numero_mecanicos > 0 and record.precio_hora != False:
                 record.importe_total = record.horas_trabajadas * record.numero_mecanicos * record.precio_hora
             if len(record.linea_reparacion_ids) > 0:
-                for repuesto in record.linea_reparacion_ids:
-                    record.importe_total = record.importe_total + repuesto.repuesto_id.precio * repuesto.cantidad
+                for linea_reparacion in record.linea_reparacion_ids:
+                    record.importe_total = record.importe_total + linea_reparacion.repuesto_id.precio * linea_reparacion.cantidad
             record.importe_total += record.importe_total * float(record.iva)
             record.importe_total -= record.importe_total * record.descuento / 100
     
@@ -84,11 +84,17 @@ class reparacion(models.Model):
                 break
     
     @api.onchange('mecanico_ids', 'taller_id')
-    def _check_taller_in_mecanico(self):
+    def _check_mecanico_in_taller(self):
         for mecanico in self.mecanico_ids:
             if not mecanico.taller_id.__eq__(self.taller_id):
-                raise models.ValidationError("Error, el mecánico seleccionado no está en el taller en el que se realiza la reparación.")
+                raise models.ValidationError("Error, el mecánico \"" + mecanico.nombre_apellidos + "\" no está en el taller en el que se realiza la reparación.")
             
+    @api.onchange('linea_reparacion_ids', 'taller_id')
+    def _check_repuesto_in_taller(self):
+        for linea_reparacion in self.linea_reparacion_ids:
+            if self.taller_id not in linea_reparacion.repuesto_id.taller_ids:
+                raise models.ValidationError("Error, el repuesto \"" + linea_reparacion.repuesto_id.nombre_repuesto + "\" seleccionado no está en el taller en el que se realiza la reparación.")
+
     @api.one
     def btn_submit_to_terminada(self):
         error = ""
@@ -103,7 +109,7 @@ class reparacion(models.Model):
             error += "Ningún mecánico seleccionado.\n"
         if len(self.linea_reparacion_ids) > 0:
             for linea_reparacion in self.linea_reparacion_ids:
-                if linea_reparacion.repuesto_id.cantidad < linea_reparacion.cantidad:
+                if linea_reparacion.repuesto_id.stock < linea_reparacion.cantidad:
                     repuesto = linea_reparacion.repuesto_id.nombre_repuesto
                     break
             if len(repuesto) > 0:
@@ -112,7 +118,7 @@ class reparacion(models.Model):
             raise models.ValidationError("Error al terminar la reparación:\n" + error)
         else:
             for linea_reparacion in self.linea_reparacion_ids:
-                linea_reparacion.repuesto_id.cantidad -= linea_reparacion.cantidad
+                linea_reparacion.repuesto_id.stock -= linea_reparacion.cantidad
             self.write({"state":"terminada"})
         
     @api.one
