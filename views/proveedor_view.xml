@@ -13,15 +13,9 @@
 						<field name="direccion" />
 						<field name="email" />
 					</group>
-					<!--  <group colspan="2">
-						<field name="repuesto_ids">
-							<tree>
-								<field name="" />
-								<field name="" />
-							</tree>
-						</field>
+					<group colspan="2">
+						<field name="pedido_ids"/>
 					</group>
-					-->
 				</form>
 			</field>
 		</record>

@@ -12,7 +12,7 @@ class linea_pedido(models.Model):
     
     cantidad = fields.Integer("Cantidad", size=3)
     
-    repuesto_id = fields.Many2one("upocar.repuesto", string="Repuesto", required=True)
+    repuesto_id = fields.Many2one("upocar.repuesto", string="Repuesto", required=True,ondelete="restrict")
     pedido_id = fields.Many2one("upocar.pedido", string="Pedido")
     precio_unidad=fields.Float("Precio por unidad",(4,2),required=True)
     
