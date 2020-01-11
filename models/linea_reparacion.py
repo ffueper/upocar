@@ -35,7 +35,12 @@ class linea_reparacion(models.Model):
     @api.onchange("repuesto_id")
     def check_taller(self):
         resultado = {}
-        if self.repuesto_id and not self.repuesto_id.taller_id.__eq__(self.reparacion_id.taller_id):
+        enc=False
+        for taller in self.repuesto_id.taller_ids:
+            if taller== self.reparacion_id.taller_id:
+                enc=True
+                break
+        if not enc:
             resultado = {'value': {'repuesto_id' : "" },
                          'warning': {'title': 'Repuesto incorrecto',
                                      'message': 'El repuesto no corresponde al taller en el que se está realizando la reparación'}

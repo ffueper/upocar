@@ -7,6 +7,14 @@
 			<field name="model">upocar.pedido</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de pedido">
+					<header>
+						<button name="btn_submit_to_pagado"
+							string="Validar y pagar" type="object" class="oe_highlight"
+							states="pendiente" />
+						<button name="btn_submit_to_entregado" string="Entregar"
+							type="object" class="oe_highlight" states="pagado" />
+						<field name='state' widget='statusbar' />
+					</header>
 					<group string="Pedido">
 						<field name="identificador" />
 						<field name="taller_id" />
