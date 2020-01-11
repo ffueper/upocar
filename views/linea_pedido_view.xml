@@ -13,6 +13,7 @@
 						</group>
 						<group>
 							<field name="cantidad" />
+							<field name="precio_unidad"/>
 						</group>
 					</group>
 				</form>

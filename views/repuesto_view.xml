@@ -20,7 +20,7 @@
 					</group>
 					<group string="Localización">
 						<field name="taller_ids" />
-						<field name="proveedor_id" />
+						
 					</group>
 				</form>
 			</field>

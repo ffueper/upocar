@@ -20,22 +20,22 @@
 					</group>
 					<notebook>
 						<page string="Clientes">
-						<field name="cliente_ids">
-							<tree>
-								<field name="nombre" />
-								<field name="apellidos" />
-								<field name="dni" />
-							</tree>
-						</field>
+							<field name="cliente_ids">
+								<tree>
+									<field name="nombre" />
+									<field name="apellidos" />
+									<field name="dni" />
+								</tree>
+							</field>
 						</page>
 						<page string="Reparación">
-						<field name="reparacion_ids"/>
+							<field name="reparacion_ids" />
 						</page>
 						<page string="Mecanicos">
-						<field name="mecanico_ids"/>
+							<field name="mecanico_ids" />
 						</page>
 						<page string="Repuestos">
-						<field name="repuesto_ids"/>
+							<field name="repuesto_ids" />
 						</page>
 					</notebook>
 				</form>
@@ -68,7 +68,6 @@
 					<field name="city" />
 					<field name="direccion" />
 
-					<separator orientation="vertical" />
 
 					<group expand="0" string="Agrupar por...">
 						<filter name="group_by_ciudad" string="Ciudad"
