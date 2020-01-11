@@ -7,7 +7,9 @@ from odoo import models,fields,api
 
 
 class taller(models.Model):
+    
     _name = 'upocar.taller'
+    _rec_name = "nombre"
     cif = fields.Char("CIF del taller",size=9,required=True)
     nombre = fields.Char("Nombre del taller",size=64,required=True)
 
