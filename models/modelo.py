@@ -12,7 +12,6 @@ class modelo(models.Model):
     _rec_name = "nombre_modelo"
     nombre_modelo = fields.Char('Nombre', size=64, required=True)
 
-    marca_id = fields.Many2one("upocar.marca", string="Marca del modelo")
-
+    marca_id = fields.Many2one("upocar.marca", string="Marca del modelo", required=True)
     repuesto_ids = fields.One2many("upocar.repuesto", "modelo_id", string="Repuestos")
     vehiculo_ids = fields.One2many("upocar.vehiculo", "modelo_id", string="Vehículos")

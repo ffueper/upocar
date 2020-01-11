@@ -8,20 +8,25 @@
 			<field name="arch" type="xml">
 				<form string="Formulario de repuesto">
 					<group string="Repuesto">
+						<button name="delete_repuesto" string="Baja repuesto"
+							type="object"></button>
 						<field name="nombre_repuesto" />
 						<field name="descripcion" />
 						<field name="precio" />
 						<field name="stock" />
-						<field name="modelo_id">
-							<tree>
-								<field name="nombre_modelo" />
-							</tree>
-						</field>
+						<field name="modelo_id" />
 					</group>
-					<group string="Localización">
-						<field name="taller_ids" />
-						
-					</group>
+					<notebook>
+						<page string="Taller">
+							<field name="taller_ids" />
+						</page>
+						<page string="Líneas de pedido">
+							<field name="linea_pedido_ids" />
+						</page>
+						<page string="Líneas de reparación">
+							<field name="linea_reparacion_ids" />
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>

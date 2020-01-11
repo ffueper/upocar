@@ -16,7 +16,7 @@ class pedido(models.Model):
     
     taller_id = fields.Many2one("upocar.taller", "Taller", required=True)
     proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor", required=True)
-    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas reparacion",ondelete="cascade")
+    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas reparacion")
     iva = fields.Selection([("0.1", '10%'),
                           ("0.15", '15%'),
                           ("0.21", '21%'), ],
@@ -45,9 +45,9 @@ class pedido(models.Model):
     
     @api.depends('descuento', 'iva', 'linea_pedido_ids')
     def _get_importe_total(self):
-        self.importe_total=0
+        self.importe_total = 0
         for linea in self.linea_pedido_ids:
-            self.importe_total+=linea.precio_unidad*linea.cantidad
+            self.importe_total += linea.precio_unidad * linea.cantidad
         self.importe_total += self.importe_total * float(self.iva)
         self.importe_total -= self.importe_total * self.descuento / 100
         
