@@ -64,6 +64,18 @@
 				</graph>
 			</field>
 		</record>
+		
+		<record model="ir.ui.view" id="upocar_repuesto_search">
+			<field name="name">upocar_repuesto_search</field>
+			<field name="model">upocar.repuesto</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Repuesto">
+					<field name="nombre_repuesto" />
+					<field name="descripcion" />
+				</search>
+			</field>
+		</record>
 
 		<record id="act_repuesto" model="ir.actions.act_window">
 			<field name="name">Repuesto</field>

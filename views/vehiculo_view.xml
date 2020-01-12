@@ -60,6 +60,8 @@
 							context="{'group_by':'marca'}" />
 						<filter name="group_by_modelo" string="Modelo"
 							context="{'group_by':'modelo_id'}" />
+						<filter name="group_by_numero_reparaciones" string="Numero de reparaciones"
+							context="{'group_by':'numero_reparaciones'}" />
 					</group>
 				</search>
 			</field>

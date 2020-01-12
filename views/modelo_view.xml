@@ -53,6 +53,22 @@
 				</graph>
 			</field>
 		</record>
+		
+		<!-- VISTA SEARCH -->
+		<record model="ir.ui.view" id="upocar_modelo_search">
+			<field name="name">upocar_modelo_search</field>
+			<field name="model">upocar.modelo</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Modelo">				
+					<field name="nombre_modelo" />				
+					<group expand="0" string="Agrupar por...">
+						<filter name="group_by_marca" string="Marca"
+							context="{'group_by':'marca_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
 
 		<record id="act_modelo" model="ir.actions.act_window">
 			<field name="name">Modelos</field>
