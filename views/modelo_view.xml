@@ -7,7 +7,7 @@
 			<field name="model">upocar.modelo</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de modelo">
-					<group string="Vehiculo">
+					<group string="Modelo">
 						<field name="nombre_modelo" />
 						<field name="marca_id">
 							<tree>
@@ -15,12 +15,14 @@
 							</tree>
 						</field>
 					</group>
-					<group string="Repuestos">
-						<field name="repuesto_ids" />
-					</group>
-					<group string="Vehículos">
-						<field name="vehiculo_ids" />
-					</group>
+					<notebook>
+						<page string="Vehículos">
+							<field name="vehiculo_ids" />
+						</page>
+						<page string="Repuestos">
+							<field name="repuesto_ids" />
+						</page>
+					</notebook>
 				</form>
 			</field>
 		</record>
@@ -40,7 +42,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<!-- VISTA GRAPH -->
 		<record model="ir.ui.view" id="library_book_graph">
 			<field name="name">Modelo</field>
