@@ -27,7 +27,6 @@ class repuesto(models.Model):
     #        raise models.ValidationError("Es necesario seleccionar un taller al menos")
     
     def delete_repuesto(self):
-        #self.write({'linea_pedido_ids':[ (5,) ]})
         for linea_pedido in self.linea_pedido_ids:
             linea_pedido.unlink()
         for linea_reparacion in self.linea_reparacion_ids:

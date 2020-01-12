@@ -33,10 +33,6 @@
 						</group>
 					</group>
 					<notebook>
-						<page string="Taller">
-							<field name="taller_id" nolabel="1"
-								attrs="{'readonly':['|',('state','!=','en_proceso')]}" />
-						</page>
 						<page string="Repuesto/s">
 							<field name="linea_reparacion_ids" nolabel="1"
 								attrs="{'readonly':['|',('state','!=','en_proceso')]}" />

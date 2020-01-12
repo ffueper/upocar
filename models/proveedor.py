@@ -3,7 +3,8 @@ Created on 17 nov. 2019
 
 @author: Juan Carlos Ruiloba
 '''
-from odoo import models,fields,api
+from odoo import models, fields, api
+
 
 class proveedor(models.Model):
     _name = 'upocar.proveedor'
