@@ -16,13 +16,13 @@ class pedido(models.Model):
     
     taller_id = fields.Many2one("upocar.taller", "Taller", required=True)
     proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor", required=True)
-    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas reparacion")
+    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas pedido")
     iva = fields.Selection([("0.1", '10%'),
                           ("0.15", '15%'),
                           ("0.21", '21%'), ],
                           string='IVA', default='0.21', required=True)
     
-    descuento = fields.Float("Descuento aplicado", (3, 2), required=True)
+    descuento = fields.Float("Descuento aplicado (%)", (3, 2), required=True)
     importe_total = fields.Float("Importe total", (4, 2), compute="_get_importe_total", readonly=True, store=True)
     state = fields.Selection([('pendiente', 'Pendiente de aprobación'),
                               ('pagado', 'Pagado'),

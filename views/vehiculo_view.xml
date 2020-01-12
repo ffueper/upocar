@@ -16,16 +16,12 @@
 						<group>
 							<field name="numero_bastidor" />
 							<field name="matricula" />
+							<field name="cliente_id" />
 						</group>
 					</group>
-					<notebook>
-						<page string="Reparaciones">
-							<field name="reparacion_ids" />
-						</page>
-						<page string="Dueño del vehículo">
-							<field name="cliente_id" />
-						</page>
-					</notebook>
+					<group>
+						<field name="reparacion_ids" />
+					</group>
 				</form>
 			</field>
 		</record>
@@ -59,7 +55,7 @@
 					<field name="marca" />
 					<field name="cliente_id" />
 					<field name="modelo_id" />
-					
+
 					<group expand="0" string="Agrupar por...">
 						<filter name="group_by_marca" string="Marca"
 							context="{'group_by':'marca'}" />

@@ -37,6 +37,9 @@
 						<page string="Repuestos">
 							<field name="repuesto_ids" />
 						</page>
+						<page string="Pedidos">
+							<field name="pedido_ids" />
+						</page>
 					</notebook>
 				</form>
 			</field>
