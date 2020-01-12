@@ -1,65 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo> 
-	 	<data noupdate="1"> 
-	 	 	<record id="marca_opel" model="upocar.marca"> 
-	 	 	 	<field name="nombre_marca">Opel</field> 
-	 	 	</record>
-	 	 	<record id="marca_mercedes" model="upocar.marca"> 
-	 	 	 	<field name="nombre_marca">Mercedes</field> 
-	 	 	</record>
-	 	 	
-	 	 	<record id="modelo_vivaro" model="upocar.modelo"> 
-	 	 	 	<field name="nombre_modelo">Vivaro2</field>
-	 	 	 	<field name="marca_id" ref="marca_opel"></field>
-	 	 	</record>
-	 	 	
-	 	 	<record id="cliente50" model="upocar.cliente"> 
-	 	 	 	<field name="dni">48813535Z</field>
-	 	 	 	<field name="nombre">Fernando</field>
-	 	 	 	<field name="apellidos">Fuentes Perez</field>
-	 	 	 	<field name="telefono">633871034</field>
-	 	 	</record>
-	 	 	
-	 	 	<record id="proveedor" model="upocar.proveedor"> 
-	 	 	 	<field name="cif">123456789</field>
-	 	 	 	<field name="nombre">Pedro Martinez</field>
-	 	 	 	<field name="telefono">987123765</field>
-	 	 	 	<field name="direccion">Poligono Calonge 6</field>
-	 	 	 	<field name="email">pedromartinez@gmail.com</field>
-	 	 	</record>
-	 	 	
-	 	 	<record id="mecanico50" model="upocar.mecanico">
-	 	 	 	<field name="nombre">Manolo</field>
-	 	 	 	<field name="apellidos">García Rumuald</field>
-	 	 	 	<field name="especialidad">Ruedas</field>
-	 	 	</record>
-	 	 	<record id="mecanico51" model="upocar.mecanico">
-	 	 	 	<field name="nombre">Luis</field>
-	 	 	 	<field name="apellidos">Aragones</field>
-	 	 	 	<field name="especialidad">Motores</field>
-	 	 	</record>
-	 	 	
-	 	 	<record id="vehiculo50" model="upocar.vehiculo"> 
-	 	 	 	<field name="matricula">48813535Z</field>
-	 	 	 	<field name="numero_bastidor">Fernando</field>
-	 	 	 	<field name="kilometros">Fuentes Perez</field>
-	 	 	 	<field name="cliente_id" ref="cliente50"></field>
-	 	 	 	<field name="modelo_id" ref="modelo_vivaro"></field>
-	 	 	</record>
-	 	 	
-	 	 	<record id="reparacion50" model="upocar.reparacion"> 
-	 	 	 	<field name="descripcion">Reparación de las ruedas por un pinchazo</field>
-	 	 	 	<field name="fecha_inicio">16/12/2019 15:00:00</field>
-	 	 	 	<field name="fecha_fin">18/12/2019 15:00:00</field>
-	 	 	 	<field name="horas_trabajadas">12</field>
-	 	 	 	<field name="precio_hora">20</field>
-	 	 	 	<field name="descuento">10</field>
-	 	 	 	<field name="iva">12</field>
-	 	 	 	<field name="state">en_proceso</field>
-	 	 	 	<field name="vehiculo_id" ref="vehiculo50"></field>
-	 	 	 	<field name="mecanico_ids" eval="[(6, 	0, mecanico50, mecanico51, ])]" ></field>
-	 	 	 	
-	 	 	</record>
- 	 	 
-	 	</data> 
+<odoo>
+	<data noupdate="1">
+
+		<!-- MARCAS -->
+		<record id="marca_subaru" model="upocar.marca">
+			<field name="nombre_marca">Subaru</field>
+		</record>
+		<record id="marca_mclaren" model="upocar.marca">
+			<field name="nombre_marca">McLaren</field>
+		</record>
+		<record id="marca_opel" model="upocar.marca">
+			<field name="nombre_marca">Opel</field>
+		</record>
+		<record id="marca_mercedes" model="upocar.marca">
+			<field name="nombre_marca">Mercedes</field>
+		</record>
+		<record id="marca_pirelli" model="upocar.marca">
+			<field name="nombre_marca">Pirelli</field>
+		</record>
+		<record id="marca_kyn" model="upocar.marca">
+			<field name="nombre_marca">KyN</field>
+		</record>
+
+		<!-- MODELOS -->
+		<record id="modelo_impreza" model="upocar.modelo">
+			<field name="nombre_modelo">Impreza WRX</field>
+			<field name="marca_id" ref="marca_subaru"></field>
+		</record>
+		<record id="modelo_p1" model="upocar.modelo">
+			<field name="nombre_modelo">P1</field>
+			<field name="marca_id" ref="marca_mclaren"></field>
+		</record>
+		<record id="modelo_vivaro" model="upocar.modelo">
+			<field name="nombre_modelo">Vivaro</field>
+			<field name="marca_id" ref="marca_opel"></field>
+		</record>
+		<record id="modelo_amg_gt" model="upocar.modelo">
+			<field name="nombre_modelo">AMG GT</field>
+			<field name="marca_id" ref="marca_mercedes"></field>
+		</record>
+		<record id="modelo_pirelli_todo_tiempo" model="upocar.modelo">
+			<field name="nombre_modelo">205/65 R16 91V</field>
+			<field name="marca_id" ref="marca_pirelli"></field>
+		</record>
+		<record id="modelo_hp-1008" model="upocar.modelo">
+			<field name="nombre_modelo">HP-1008</field>
+			<field name="marca_id" ref="marca_kyn"></field>
+		</record>
+		<record id="modelo_RU-5064" model="upocar.modelo">
+			<field name="nombre_modelo">RU-5064</field>
+			<field name="marca_id" ref="marca_kyn"></field>
+		</record>
+
+		<!-- TALLERES -->
+		<record id="taller10" model="upocar.taller">
+			<field name="cif">B67657189</field>
+			<field name="nombre">Taller Jerez Sur</field>
+			<field name="state_id">429</field>
+			<field name="country_id">68</field>
+			<field name="city">Jerez de la frontera</field>
+			<field name="direccion">Av. de Europa, 14</field>
+		</record>
+		<record id="taller11" model="upocar.taller">
+			<field name="cif">N1350140H</field>
+			<field name="nombre">Eurotaller</field>
+			<field name="state_id">459</field>
+			<field name="country_id">68</field>
+			<field name="city">Sevilla</field>
+			<field name="direccion">Av. de la paz, 8</field>
+		</record>
+
+		<!-- CLIENTES -->
+		<record id="cliente1" model="upocar.cliente">
+			<field name="dni">11111111D</field>
+			<field name="nombre">Pedro</field>
+			<field name="apellidos">Martín Sánchez</field>
+			<field name="telefono">666666666</field>
+			<field name="taller_ids" eval="{(4, taller10)}"></field>
+		</record>
+		<record id="cliente2" model="upocar.cliente">
+			<field name="dni">22222222D</field>
+			<field name="nombre">Juan Carlos</field>
+			<field name="apellidos">Ruiz Fernández</field>
+			<field name="telefono">777777777</field>
+			<field name="taller_ids" eval="{(4, taller10)}"></field>
+		</record>
+		<record id="cliente50" model="upocar.cliente">
+			<field name="dni">48813535Z</field>
+			<field name="nombre">Fernando</field>
+			<field name="apellidos">Fuentes Perez</field>
+			<field name="telefono">633871034</field>
+			<field name="taller_ids" eval="{(4, taller11)}"></field>
+		</record>
+
+		<!-- PROVEEDORES -->
+		<record id="proveedor1" model="upocar.proveedor">
+			<field name="cif">123456789</field>
+			<field name="nombre">Sergio Rodríguez Mata</field>
+			<field name="telefono">987123765</field>
+			<field name="direccion">Polígono Calonge 6</field>
+			<field name="email">sergiorodriguez@gmail.com</field>
+		</record>
+		<record id="proveedor2" model="upocar.proveedor">
+			<field name="cif">123455555</field>
+			<field name="nombre">Antonio de la Torre</field>
+			<field name="telefono">987123765</field>
+			<field name="direccion">Polígono sur 8</field>
+			<field name="email">antoniodelatorre@gmail.com</field>
+		</record>
+
+		<!-- MECÁNICOS -->
+		<record id="mecanico1" model="upocar.mecanico">
+			<field name="nombre">Manolo</field>
+			<field name="apellidos">García Rumuald</field>
+			<field name="especialidad">Ruedas</field>
+			<field name="taller_id" ref="taller10"></field>
+		</record>
+		<record id="mecanico2" model="upocar.mecanico">
+			<field name="nombre">Luis</field>
+			<field name="apellidos">Valencia Ramírez</field>
+			<field name="especialidad">Motor</field>
+			<field name="taller_id" ref="taller10"></field>
+		</record>
+
+		<!-- VEHÍCULOS -->
+		<record id="vehiculo50" model="upocar.vehiculo">
+			<field name="matricula">48813535Z</field>
+			<field name="numero_bastidor">W9293938475647382</field>
+			<field name="kilometros">100000</field>
+			<field name="cliente_id" ref="cliente50"></field>
+			<field name="modelo_id" ref="modelo_vivaro"></field>
+		</record>
+		<record id="vehiculo1" model="upocar.vehiculo">
+			<field name="matricula">8888HXZ</field>
+			<field name="numero_bastidor">B9233338475647382</field>
+			<field name="kilometros">80000</field>
+			<field name="cliente_id" ref="cliente1"></field>
+			<field name="modelo_id" ref="modelo_impreza"></field>
+		</record>
+		<record id="vehiculo2" model="upocar.vehiculo">
+			<field name="matricula">8822JZG</field>
+			<field name="numero_bastidor">B923333823147382</field>
+			<field name="kilometros">6000</field>
+			<field name="cliente_id" ref="cliente2"></field>
+			<field name="modelo_id" ref="modelo_p1"></field>
+		</record>
+		<record id="vehiculo3" model="upocar.vehiculo">
+			<field name="matricula">1234KGV</field>
+			<field name="numero_bastidor">Y927773823117382</field>
+			<field name="kilometros">2000</field>
+			<field name="cliente_id" ref="cliente2"></field>
+			<field name="modelo_id" ref="modelo_amg_gt"></field>
+		</record>
+
+		<!-- REPUESTOS -->
+		<record id="repuesto15" model="upocar.repuesto">
+			<field name="nombre_repuesto">Neumatico Pirelli</field>
+			<field name="descripcion">Neumatico para todo el tiempo 205/65 R16 91V
+			</field>
+			<field name="precio">80</field>
+			<field name="modelo_id" ref="modelo_pirelli_todo_tiempo"></field>
+		</record>
+		<record id="repuesto16" model="upocar.repuesto">
+			<field name="nombre_repuesto">Filtro del aceite KyN</field>
+			<field name="descripcion">Filtros de aceite de reemplazo O/E para la mayoría
+				de los automóviles, camiones, camionetas, motocicletas, vehículos
+				todos terreno
+			</field>
+			<field name="precio">16</field>
+			<field name="modelo_id" ref="modelo_hp-1008"></field>
+		</record>
+		<record id="repuesto17" model="upocar.repuesto">
+			<field name="nombre_repuesto">Filtro del aire KyN</field>
+			<field name="descripcion">Filtro del aire conico con abrazaderas universales
+			</field>
+			<field name="precio">63</field>
+			<field name="modelo_id" ref="modelo_RU-5064"></field>
+		</record>
+
+		<!-- LINEA REPARACIONES -->
+		<record id="linea_reparacion1" model="upocar.linea_reparacion">
+			<field name="cantidad">1</field>
+			<field name="repuesto_id" ref="repuesto15"></field>
+		</record>
+		<record id="linea_reparacion2" model="upocar.linea_reparacion">
+			<field name="cantidad">1</field>
+			<field name="repuesto_id" ref="repuesto16"></field>
+		</record>
+
+		<!-- REPARACIONES -->
+		<record id="reparacion50" model="upocar.reparacion">
+			<field name="descripcion">Cambio de neumático</field>
+			<field name="fecha_inicio">16/12/2019 15:00:00</field>
+			<field name="fecha_fin">18/12/2019 15:00:00</field>
+			<field name="horas_trabajadas">1</field>
+			<field name="precio_hora">20</field>
+			<field name="descuento">10</field>
+			<field name="iva">0.21</field>
+			<field name="vehiculo_id" ref="vehiculo50"></field>
+			<field name="taller_id" ref="taller10"></field>
+			<field name="mecanico_ids" eval="[(6, 0, [mecanico1])]"></field>
+			<field name="linea_reparacion_ids"
+				eval="[(6, 0, [linea_reparacion1])]" />
+		</record>
+		<record id="reparacion1" model="upocar.reparacion">
+			<field name="descripcion">Cambio de filtro de aceite</field>
+			<field name="fecha_inicio">10/12/2019 15:00:00</field>
+			<field name="fecha_fin">11/12/2019 15:00:00</field>
+			<field name="horas_trabajadas">2</field>
+			<field name="precio_hora">25</field>
+			<field name="descuento">5</field>
+			<field name="iva">0.21</field>
+			<field name="vehiculo_id" ref="vehiculo3"></field>
+			<field name="taller_id" ref="taller10"></field>
+			<field name="mecanico_ids" eval="[(6, 0, [mecanico2])]"></field>
+			<field name="linea_reparacion_ids"
+				eval="[(6, 0, [linea_reparacion2])]" />
+		</record>
+
+		<!-- REPUESTOS -->
+		<record id="repuesto15" model="upocar.repuesto">
+			<field name="nombre_repuesto">Neumatico Pirelli</field>
+			<field name="descripcion">Neumatico para todo el tiempo 205/65 R16 91V
+			</field>
+			<field name="precio">80</field>
+			<field name="modelo_id" ref="modelo_pirelli_todo_tiempo"></field>
+		</record>
+		<record id="repuesto16" model="upocar.repuesto">
+			<field name="nombre_repuesto">Filtro del aceite KyN</field>
+			<field name="descripcion">Filtros de aceite de reemplazo O/E para la mayoría
+				de los automóviles, camiones, camionetas, motocicletas, vehículos
+				todos terreno
+			</field>
+			<field name="precio">16</field>
+			<field name="modelo_id" ref="modelo_hp-1008"></field>
+		</record>
+		<record id="repuesto17" model="upocar.repuesto">
+			<field name="nombre_repuesto">Filtro del aire KyN</field>
+			<field name="descripcion">Filtro del aire conico con abrazaderas universales
+			</field>
+			<field name="precio">63</field>
+			<field name="modelo_id" ref="modelo_RU-5064"></field>
+		</record>
+
+		<!-- LINEA TALLER -->
+		<record id="linea_taller10" model="upocar.linea_taller">
+			<field name="stock">2</field>
+			<field name="taller_id" ref="taller10"></field>
+			<field name="repuesto_id" ref="repuesto15"></field>
+		</record>
+		<record id="linea_taller11" model="upocar.linea_taller">
+			<field name="stock">3</field>
+			<field name="taller_id" ref="taller10"></field>
+			<field name="repuesto_id" ref="repuesto16"></field>
+		</record>
+		<record id="linea_taller12" model="upocar.linea_taller">
+			<field name="stock">0</field>
+			<field name="taller_id" ref="taller11"></field>
+			<field name="repuesto_id" ref="repuesto17"></field>
+		</record>
+
+		<!-- PEDIDOS -->
+		<record id="pedido10" model="upocar.pedido">
+			<field name="identificador">1</field>
+			<field name="iva">0.21</field>
+			<field name="descuento">0.1</field>
+			<field name="taller_id" ref="taller10"></field>
+			<field name="proveedor_id" ref="proveedor1"></field>
+			<field name="state">pagado</field>
+		</record>
+		<record id="pedido11" model="upocar.pedido">
+			<field name="identificador">2</field>
+			<field name="iva">0.21</field>
+			<field name="descuento">0.0</field>
+			<field name="taller_id" ref="taller11"></field>
+			<field name="proveedor_id" ref="proveedor2"></field>
+			<field name="state">pendiente</field>
+		</record>
+
+		<!-- LINEA PEDIDOS -->
+		<record id="linea_pedido10" model="upocar.linea_pedido">
+			<field name="cantidad">4</field>
+			<field name="repuesto_id" ref="repuesto15"></field>
+			<field name="precio_unidad">60</field>
+			<field name="pedido_id" ref="pedido10" />
+		</record>
+		<record id="linea_pedido11" model="upocar.linea_pedido">
+			<field name="cantidad">2</field>
+			<field name="repuesto_id" ref="repuesto17"></field>
+			<field name="precio_unidad">50</field>
+			<field name="pedido_id" ref="pedido11" />
+		</record>
+	</data>
 </odoo> 

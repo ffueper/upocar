@@ -20,11 +20,6 @@ class repuesto(models.Model):
     linea_reparacion_ids = fields.One2many("upocar.linea_reparacion", "repuesto_id", string="Líneas reparacion")
     linea_pedido_ids = fields.One2many("upocar.linea_pedido", "repuesto_id", string="Línea pedidos")
     
-    #@api.constrains('taller_ids')
-    #def _check_taller_ids(self):
-    #    if len(self.taller_ids) < 1:
-    #        raise models.ValidationError("Es necesario seleccionar un taller al menos")
-    
     def delete_repuesto(self):
         for linea_pedido in self.linea_pedido_ids:
             linea_pedido.unlink()

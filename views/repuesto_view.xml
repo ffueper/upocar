@@ -19,8 +19,8 @@
 						<page string="Talleres">
 							<field name="linea_taller_ids">
 								<tree>
-									<field name="taller_id"/>
-									<field name="stock"/>	
+									<field name="taller_id" />
+									<field name="stock" />
 								</tree>
 							</field>
 						</page>
@@ -60,6 +60,7 @@
 			<field name="arch" type="xml">
 				<graph string="Unidades por repuesto" type="bar">
 					<field name="nombre_repuesto" type="row" />
+					<field name="precio" type="measure"/>
 				</graph>
 			</field>
 		</record>

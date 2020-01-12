@@ -38,7 +38,6 @@
 					<field name="numero_bastidor" />
 					<field name="kilometros" />
 					<field name="numero_reparaciones" />
-					<field name="cliente_id" />
 				</tree>
 			</field>
 		</record>
@@ -53,16 +52,12 @@
 					<field name="matricula" />
 					<field name="numero_bastidor" />
 					<field name="marca" />
-					<field name="cliente_id" />
 					<field name="modelo_id" />
-
+					<filter string="Vehículos con una reparación o más"
+						domain="[('numero_reparaciones','>','0')]" />
 					<group expand="0" string="Agrupar por...">
 						<filter name="group_by_marca" string="Marca"
 							context="{'group_by':'marca'}" />
-
-						<filter name="group_by_cliente" string="Cliente"
-							context="{'group_by':'cliente_id'}" />
-
 						<filter name="group_by_modelo" string="Modelo"
 							context="{'group_by':'modelo_id'}" />
 					</group>
