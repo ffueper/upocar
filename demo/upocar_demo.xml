@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo> 
+	 	<data noupdate="1"> 
+	 	 	<record id="marca_opel" model="upocar.marca"> 
+	 	 	 	<field name="nombre_marca">Opel</field> 
+	 	 	</record>
+	 	 	<record id="marca_mercedes" model="upocar.marca"> 
+	 	 	 	<field name="nombre_marca">Mercedes</field> 
+	 	 	</record>
+	 	 	
+	 	 	<record id="modelo_vivaro" model="upocar.modelo"> 
+	 	 	 	<field name="nombre_modelo">Vivaro2</field>
+	 	 	 	<field name="marca_id" ref="marca_opel"></field>
+	 	 	</record>
+	 	 	
+	 	 	<record id="cliente50" model="upocar.cliente"> 
+	 	 	 	<field name="dni">48813535Z</field>
+	 	 	 	<field name="nombre">Fernando</field>
+	 	 	 	<field name="apellidos">Fuentes Perez</field>
+	 	 	 	<field name="telefono">633871034</field>
+	 	 	</record>
+	 	 	
+	 	 	<record id="proveedor" model="upocar.proveedor"> 
+	 	 	 	<field name="cif">123456789</field>
+	 	 	 	<field name="nombre">Pedro Martinez</field>
+	 	 	 	<field name="telefono">987123765</field>
+	 	 	 	<field name="direccion">Poligono Calonge 6</field>
+	 	 	 	<field name="email">pedromartinez@gmail.com</field>
+	 	 	</record>
+	 	 	
+	 	 	<record id="mecanico50" model="upocar.mecanico">
+	 	 	 	<field name="nombre">Manolo</field>
+	 	 	 	<field name="apellidos">García Rumuald</field>
+	 	 	 	<field name="especialidad">Ruedas</field>
+	 	 	</record>
+	 	 	<record id="mecanico51" model="upocar.mecanico">
+	 	 	 	<field name="nombre">Luis</field>
+	 	 	 	<field name="apellidos">Aragones</field>
+	 	 	 	<field name="especialidad">Motores</field>
+	 	 	</record>
+	 	 	
+	 	 	<record id="vehiculo50" model="upocar.vehiculo"> 
+	 	 	 	<field name="matricula">48813535Z</field>
+	 	 	 	<field name="numero_bastidor">Fernando</field>
+	 	 	 	<field name="kilometros">Fuentes Perez</field>
+	 	 	 	<field name="cliente_id" ref="cliente50"></field>
+	 	 	 	<field name="modelo_id" ref="modelo_vivaro"></field>
+	 	 	</record>
+	 	 	
+	 	 	<record id="reparacion50" model="upocar.reparacion"> 
+	 	 	 	<field name="descripcion">Reparación de las ruedas por un pinchazo</field>
+	 	 	 	<field name="fecha_inicio">16/12/2019 15:00:00</field>
+	 	 	 	<field name="fecha_fin">18/12/2019 15:00:00</field>
+	 	 	 	<field name="horas_trabajadas">12</field>
+	 	 	 	<field name="precio_hora">20</field>
+	 	 	 	<field name="descuento">10</field>
+	 	 	 	<field name="iva">12</field>
+	 	 	 	<field name="state">en_proceso</field>
+	 	 	 	<field name="vehiculo_id" ref="vehiculo50"></field>
+	 	 	 	<field name="mecanico_ids" eval="[(6, 	0, mecanico50, mecanico51, ])]" ></field>
+	 	 	 	
+	 	 	</record>
+ 	 	 
+	 	</data> 
+</odoo> 
