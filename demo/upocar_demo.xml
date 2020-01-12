@@ -156,7 +156,7 @@
 		<!-- REPUESTOS -->
 		<record id="repuesto15" model="upocar.repuesto">
 			<field name="nombre_repuesto">Neumatico Pirelli</field>
-			<field name="descripcion">Neumatico para todo el tiempo 205/65 R16 91V
+			<field name="descripcion">Neumatico para verano e invierno 205/65 R16 91V
 			</field>
 			<field name="precio">80</field>
 			<field name="modelo_id" ref="modelo_pirelli_todo_tiempo"></field>
@@ -172,7 +172,7 @@
 		</record>
 		<record id="repuesto17" model="upocar.repuesto">
 			<field name="nombre_repuesto">Filtro del aire KyN</field>
-			<field name="descripcion">Filtro del aire conico con abrazaderas universales
+			<field name="descripcion">Filtro del aire cónico con abrazaderas universales
 			</field>
 			<field name="precio">63</field>
 			<field name="modelo_id" ref="modelo_RU-5064"></field>
@@ -191,8 +191,8 @@
 		<!-- REPARACIONES -->
 		<record id="reparacion50" model="upocar.reparacion">
 			<field name="descripcion">Cambio de neumático</field>
-			<field name="fecha_inicio">16/12/2019 15:00:00</field>
-			<field name="fecha_fin">18/12/2019 15:00:00</field>
+			<field name="fecha_inicio">16/01/2020 15:00:00</field>
+			<field name="fecha_fin">18/01/2020 15:00:00</field>
 			<field name="horas_trabajadas">1</field>
 			<field name="precio_hora">20</field>
 			<field name="descuento">10</field>
@@ -205,8 +205,8 @@
 		</record>
 		<record id="reparacion1" model="upocar.reparacion">
 			<field name="descripcion">Cambio de filtro de aceite</field>
-			<field name="fecha_inicio">10/12/2019 15:00:00</field>
-			<field name="fecha_fin">11/12/2019 15:00:00</field>
+			<field name="fecha_inicio">10/01/2020 15:00:00</field>
+			<field name="fecha_fin">11/01/2020 15:00:00</field>
 			<field name="horas_trabajadas">2</field>
 			<field name="precio_hora">25</field>
 			<field name="descuento">5</field>
@@ -216,31 +216,6 @@
 			<field name="mecanico_ids" eval="[(6, 0, [mecanico2])]"></field>
 			<field name="linea_reparacion_ids"
 				eval="[(6, 0, [linea_reparacion2])]" />
-		</record>
-
-		<!-- REPUESTOS -->
-		<record id="repuesto15" model="upocar.repuesto">
-			<field name="nombre_repuesto">Neumatico Pirelli</field>
-			<field name="descripcion">Neumatico para todo el tiempo 205/65 R16 91V
-			</field>
-			<field name="precio">80</field>
-			<field name="modelo_id" ref="modelo_pirelli_todo_tiempo"></field>
-		</record>
-		<record id="repuesto16" model="upocar.repuesto">
-			<field name="nombre_repuesto">Filtro del aceite KyN</field>
-			<field name="descripcion">Filtros de aceite de reemplazo O/E para la mayoría
-				de los automóviles, camiones, camionetas, motocicletas, vehículos
-				todos terreno
-			</field>
-			<field name="precio">16</field>
-			<field name="modelo_id" ref="modelo_hp-1008"></field>
-		</record>
-		<record id="repuesto17" model="upocar.repuesto">
-			<field name="nombre_repuesto">Filtro del aire KyN</field>
-			<field name="descripcion">Filtro del aire conico con abrazaderas universales
-			</field>
-			<field name="precio">63</field>
-			<field name="modelo_id" ref="modelo_RU-5064"></field>
 		</record>
 
 		<!-- LINEA TALLER -->

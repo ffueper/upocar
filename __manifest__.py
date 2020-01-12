@@ -2,7 +2,7 @@
 {
     'name': "UPOCAR",
     'summary': """Gestión de taller""",
-    'description': """Gestión de un taller mecánico""",
+    'description': """Gestión de un grupo de talleres mecánicos""",
     'author': "Pedro Martín Sánchez, Juan Carlos Ruiloba Calderón y Fernando Fuentes Pérez",
     'category': 'UPOCAR',
     'version': '0.1',

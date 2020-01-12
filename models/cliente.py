@@ -16,10 +16,9 @@ class cliente(models.Model):
     telefono = fields.Integer("Telefono del cliente", size=9, required=True)
     nombreyapellidos = fields.Char("Nombre y apellidos", compute="compute_nombre_y_apellidos")
     
-    _sql_constraints = [('cliente_dni_unique','UNIQUE (dni)','El dni debe ser único')]
-
+    _sql_constraints = [('cliente_dni_unique', 'UNIQUE (dni)', 'El dni debe ser único')]
     
-    vehiculo_ids = fields.One2many("upocar.vehiculo",'cliente_id',string ="Vehiculos del cliente")
+    vehiculo_ids = fields.One2many("upocar.vehiculo", 'cliente_id', string="Vehiculos del cliente")
     taller_ids = fields.Many2many("upocar.taller", string="Taller del cliente")
     
     @api.depends('nombre', 'apellidos')

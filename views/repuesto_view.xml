@@ -54,7 +54,7 @@
 		</record>
 
 		<!-- VISTA GRAPH -->
-		<record model="ir.ui.view" id="library_book_graph">
+		<record model="ir.ui.view" id="upocar_repuesto_graph">
 			<field name="name">Repuestos</field>
 			<field name="model">upocar.repuesto</field>
 			<field name="arch" type="xml">

@@ -46,7 +46,7 @@
 				</tree>
 			</field>
 		</record>
-
+		
 		<record model="ir.ui.view" id="upocar_cliente_search">
 			<field name="name">upocar_cliente_search</field>
 			<field name="model">upocar.cliente</field>
@@ -66,7 +66,7 @@
 		<record id="act_cliente" model="ir.actions.act_window">
 			<field name="name">Cliente</field>
 			<field name="res_model">upocar.cliente</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 		</record>
 
 		<menuitem name="Cliente" id="upocar_cliente_submenu"
