@@ -7,7 +7,7 @@
 			<field name="model">upocar.marca</field>
 			<field name="arch" type="xml">
 				<form string="Formulario de marca">
-					<group string="Vehiculo">
+					<group string="Marca">
 						<field name="nombre_marca" />
 					</group>
 					<group string="Modelos">
