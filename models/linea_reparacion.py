@@ -35,4 +35,7 @@ class linea_reparacion(models.Model):
     @api.depends("repuesto_id")
     def compute_stock(self):
         if self.repuesto_id:
-            self.stock = self.repuesto_id.stock
+            for linea_taller in self.repuesto_id.linea_taller_ids:
+                if self.reparacion_id.taller_id == linea_taller.taller_id:
+                    self.stock = linea_taller.stock
+                    break

@@ -13,12 +13,16 @@
 						<field name="nombre_repuesto" />
 						<field name="descripcion" />
 						<field name="precio" />
-						<field name="stock" />
 						<field name="modelo_id" />
 					</group>
 					<notebook>
-						<page string="Taller">
-							<field name="taller_ids" />
+						<page string="Talleres">
+							<field name="linea_taller_ids">
+								<tree>
+									<field name="taller_id"/>
+									<field name="stock"/>	
+								</tree>
+							</field>
 						</page>
 						<page string="Líneas de pedido">
 							<field name="linea_pedido_ids" />
@@ -40,7 +44,6 @@
 					<field name="nombre_repuesto" />
 					<field name="descripcion" />
 					<field name="precio" />
-					<field name="stock" />
 					<field name="modelo_id">
 						<tree>
 							<field name="nombre_modelo" />
@@ -57,7 +60,6 @@
 			<field name="arch" type="xml">
 				<graph string="Unidades por repuesto" type="bar">
 					<field name="nombre_repuesto" type="row" />
-					<field name="stock" type="measure" />
 				</graph>
 			</field>
 		</record>

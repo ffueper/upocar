@@ -19,8 +19,8 @@ class cliente(models.Model):
     _sql_constraints = [('cliente_dni_unique','UNIQUE (dni)','El dni debe ser único')]
 
     
-    vehiculo_id = fields.One2many("upocar.vehiculo",'cliente_id',string ="Vehiculos del cliente")
-    taller_id = fields.Many2many("upocar.taller", string="Taller del cliente")
+    vehiculo_ids = fields.One2many("upocar.vehiculo",'cliente_id',string ="Vehiculos del cliente")
+    taller_ids = fields.Many2many("upocar.taller", string="Taller del cliente")
     
     @api.depends('nombre', 'apellidos')
     def compute_nombre_y_apellidos(self):

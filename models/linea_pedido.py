@@ -12,9 +12,9 @@ class linea_pedido(models.Model):
     
     cantidad = fields.Integer("Cantidad", size=3)
     
-    repuesto_id = fields.Many2one("upocar.repuesto", string="Repuesto", required=True,ondelete="restrict")
+    repuesto_id = fields.Many2one("upocar.repuesto", string="Repuesto", required=True, ondelete="restrict")
     pedido_id = fields.Many2one("upocar.pedido", string="Pedido")
-    precio_unidad=fields.Float("Precio por unidad",(4,2),required=True)
+    precio_unidad = fields.Float("Precio por unidad", (4, 2), required=True)
     
     @api.one
     @api.constrains("cantidad")
@@ -29,11 +29,10 @@ class linea_pedido(models.Model):
 
     @api.constrains("repuesto_id")
     def _check_repuesto_in_taller(self):
-        encontrado=False
-
-        for taller in self.repuesto_id.taller_ids:
-            if taller == self.pedido_id.taller_id:
-                encontrado=True
+        encontrado = False
+        for linea_taller in self.repuesto_id.linea_taller_ids:
+            if linea_taller.taller_id == self.pedido_id.taller_id:
+                encontrado = True
                 break
         if not encontrado:
-            raise models.ValidationError("Error: se debe introducir el repuesto: "+self.repuesto_id.nombre_repuesto+" al  taller: "+self.pedido_id.taller_id.nombre)
+            raise models.ValidationError("Error: se debe introducir el repuesto: " + self.repuesto_id.nombre_repuesto + " al  taller: " + self.pedido_id.taller_id.nombre)

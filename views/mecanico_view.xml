@@ -17,11 +17,9 @@
 							<field name="num_reparaciones" />
 						</group>
 					</group>
-					<notebook>
-						<page string="Reparaciones">
-							<field name="reparacion_ids" />
-						</page>
-					</notebook>
+					<group>
+						<field name="reparacion_ids" />
+					</group>
 				</form>
 			</field>
 		</record>

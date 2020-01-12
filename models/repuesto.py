@@ -14,9 +14,8 @@ class repuesto(models.Model):
     nombre_repuesto = fields.Char('Nombre', size=64, required=True)
     descripcion = fields.Char('Descripcion', size=256, required=True)
     precio = fields.Float('Precio', (7, 2))
-    stock = fields.Integer("Stock", size=3)
     
-    taller_ids = fields.Many2many("upocar.taller", string="Taller")
+    linea_taller_ids = fields.One2many("upocar.linea_taller", "repuesto_id", string="Taller")
     modelo_id = fields.Many2one('upocar.modelo', "Modelo", required=True)
     linea_reparacion_ids = fields.One2many("upocar.linea_reparacion", "repuesto_id", string="Líneas reparacion")
     linea_pedido_ids = fields.One2many("upocar.linea_pedido", "repuesto_id", string="Línea pedidos")
@@ -31,4 +30,18 @@ class repuesto(models.Model):
             linea_pedido.unlink()
         for linea_reparacion in self.linea_reparacion_ids:
             linea_reparacion.unlink()
-        self.write({'taller_ids':[ (5,) ]})
+        for linea_taller in self.linea_taller_ids:
+            linea_taller.unlink()
+        
+    @api.onchange('linea_taller_ids')
+    def _check_repetitions_linea_reparacion(self):
+        for linea_taller in self.linea_taller_ids:
+            count = 0
+            for linea_taller2 in self.linea_taller_ids:
+                if linea_taller.taller_id.__eq__(linea_taller2.taller_id):
+                    count += 1
+            if count > 1:
+                raise models.ValidationError("Repuesto \"" + linea_taller.repuesto_id.nombre_repuesto + "\" repetido en el taller. Aumenta la cantidad")
+                break
+            
+            

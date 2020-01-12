@@ -10,8 +10,12 @@
 					<group string="Marca">
 						<field name="nombre_marca" />
 					</group>
-					<group string="Modelos">
-						<field name="modelo_ids" />
+					<group>
+						<field name="modelo_ids">
+							<tree>
+								<field name="nombre_modelo" />
+							</tree>
+						</field>
 					</group>
 				</form>
 			</field>

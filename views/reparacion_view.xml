@@ -16,19 +16,19 @@
 					</header>
 					<group string="Reparación">
 						<group>
-							<field name="taller_id" />
-							<field name="descripcion" />
-							<field name="fecha_inicio" />
-							<field name="fecha_fin" />
+							<field name="taller_id" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="descripcion" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="fecha_inicio" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="fecha_fin" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
 							<field name="numero_dias" />
 							<field name="numero_mecanicos" />
 						</group>
 						<group>
-							<field name="vehiculo_id" />
-							<field name="precio_hora" />
-							<field name="horas_trabajadas" />
-							<field name="iva" />
-							<field name="descuento" />
+							<field name="vehiculo_id" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="precio_hora" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="horas_trabajadas" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="iva" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
+							<field name="descuento" attrs="{'readonly':['|',('state','!=','en_proceso')]}"/>
 							<field name="importe_total" />
 						</group>
 					</group>

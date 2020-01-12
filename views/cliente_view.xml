@@ -7,20 +7,27 @@
 			<field name="arch" type="xml">
 				<form string="form_cliente">
 					<group string="Cliente">
-						<field name="nombre" />
-						<field name="apellidos" />
-						<field name="dni" />
-						<field name="telefono" />
+						<group>
+							<field name="nombre" />
+							<field name="apellidos" />
+						</group>
+						<group>
+							<field name="dni" />
+							<field name="telefono" />
+						</group>
 					</group>
 					<notebook>
 						<page string="Vehiculos del cliente">
-							<field name="vehiculo_id">
+							<field name="vehiculo_ids">
 								<tree>
 									<field name="marca" />
 									<field name="modelo_id" />
 									<field name="matricula" />
 								</tree>
 							</field>
+						</page>
+						<page string="Talleres">
+							<field name="taller_ids" />
 						</page>
 					</notebook>
 				</form>

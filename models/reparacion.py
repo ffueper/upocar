@@ -91,8 +91,13 @@ class reparacion(models.Model):
             
     @api.onchange('linea_reparacion_ids', 'taller_id')
     def _check_repuesto_in_taller(self):
+        enc = False
         for linea_reparacion in self.linea_reparacion_ids:
-            if self.taller_id not in linea_reparacion.repuesto_id.taller_ids:
+            for linea_taller in linea_reparacion.repuesto_id.linea_taller_ids:
+                if self.taller_id == linea_taller.taller_id:
+                    enc = True
+                    break
+            if not enc:
                 raise models.ValidationError("Error, el repuesto \"" + linea_reparacion.repuesto_id.nombre_repuesto + "\" seleccionado no está en el taller en el que se realiza la reparación.")
 
     @api.one
@@ -109,16 +114,20 @@ class reparacion(models.Model):
             error += "Ningún mecánico seleccionado.\n"
         if len(self.linea_reparacion_ids) > 0:
             for linea_reparacion in self.linea_reparacion_ids:
-                if linea_reparacion.repuesto_id.stock < linea_reparacion.cantidad:
-                    repuesto = linea_reparacion.repuesto_id.nombre_repuesto
-                    break
+                for linea_taller in linea_reparacion.repuesto_id.linea_taller_ids:
+                    if linea_taller.taller_id == self.taller_id:
+                        if linea_taller.stock < linea_reparacion.cantidad:
+                            repuesto = linea_reparacion.repuesto_id.nombre_repuesto
+                            break
             if len(repuesto) > 0:
                 error += "Stock insuficiente para el repuesto \"" + repuesto + "\", puede que se haya utilizado en otra reparación."
         if len(error) > 0:
             raise models.ValidationError("Error al terminar la reparación:\n" + error)
         else:
             for linea_reparacion in self.linea_reparacion_ids:
-                linea_reparacion.repuesto_id.stock -= linea_reparacion.cantidad
+                for linea_taller in linea_reparacion.repuesto_id.linea_taller_ids:
+                    if linea_taller.taller_id == self.taller_id:
+                        linea_taller.stock -= linea_reparacion.cantidad
             self.write({"state":"terminada"})
         
     @api.one

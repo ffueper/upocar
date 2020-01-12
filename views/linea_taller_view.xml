@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTA FORM -->
+		<record model="ir.ui.view" id="upocar_linea_taller_form">
+			<field name="name">upocar_linea_taller_form</field>
+			<field name="model">upocar.linea_taller</field>
+			<field name="arch" type="xml">
+				<form string="Formulario de línea reparación">
+					<group string="Línea reparación">
+						<group>
+							<field name="taller_id" />
+						</group>
+						<group>
+							<field name="stock" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- VISTA TREE -->
+		<record model="ir.ui.view" id="upocar_linea_taller_tree">
+			<field name="name">upocar_linea_taller_tree</field>
+			<field name="model">upocar.linea_taller</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="repuesto_id" />
+					<field name="stock" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_linea_taller" model="ir.actions.act_window">
+			<field name="name">Línea taller</field>
+			<field name="res_model">upocar.linea_taller</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</odoo>

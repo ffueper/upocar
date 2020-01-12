@@ -35,7 +35,13 @@
 							<field name="mecanico_ids" />
 						</page>
 						<page string="Repuestos">
-							<field name="repuesto_ids" />
+							<h4>Para añadir un repuesto hay que realizar un pedido</h4>
+							<field name="linea_taller_ids" attrs="{'readonly':True}">
+								<tree>
+									<field name="repuesto_id" />
+									<field name="stock" />
+								</tree>
+							</field>
 						</page>
 						<page string="Pedidos">
 							<field name="pedido_ids" />

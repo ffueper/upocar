@@ -16,13 +16,25 @@
 						<field name='state' widget='statusbar' />
 					</header>
 					<group string="Pedido">
-						<field name="identificador" />
-						<field name="taller_id" />
-						<field name="proveedor_id" />
-						<field name="linea_pedido_ids" />
-						<field name="descuento" />
-						<field name="iva" />
-						<field name="importe_total" />
+						<group>
+							<field name="identificador"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+							<field name="taller_id"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+							<field name="proveedor_id"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+						</group>
+						<group>
+							<field name="descuento"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+							<field name="iva"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+						</group>
+						<group colspan="4">
+							<field name="linea_pedido_ids"
+								attrs="{'readonly':['|',('state','!=','pendiente')]}" />
+							<field name="importe_total" />
+						</group>
 					</group>
 				</form>
 			</field>

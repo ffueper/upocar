@@ -13,20 +13,19 @@ class pedido(models.Model):
     _rec_name = "identificador"
     
     identificador = fields.Char('Identificador', size=64, required=True)
-    
-    taller_id = fields.Many2one("upocar.taller", "Taller", required=True)
-    proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor", required=True)
-    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas pedido")
     iva = fields.Selection([("0.1", '10%'),
                           ("0.15", '15%'),
                           ("0.21", '21%'), ],
                           string='IVA', default='0.21', required=True)
-    
     descuento = fields.Float("Descuento aplicado (%)", (3, 2), required=True)
     importe_total = fields.Float("Importe total", (4, 2), compute="_get_importe_total", readonly=True, store=True)
     state = fields.Selection([('pendiente', 'Pendiente de aprobación'),
                               ('pagado', 'Pagado'),
                               ('entregado', 'Entregado'), ], 'Estado', default='pendiente')
+    
+    taller_id = fields.Many2one("upocar.taller", "Taller", required=True)
+    proveedor_id = fields.Many2one('upocar.proveedor', "Proveedor", required=True)
+    linea_pedido_ids = fields.One2many("upocar.linea_pedido", "pedido_id", string="Líneas pedido")
     
     _sql_constraints = [('pedido_identificador_unique', 'UNIQUE (identificador)', 'El identificador debe ser único')]
        
@@ -39,8 +38,10 @@ class pedido(models.Model):
     
     @api.one
     def btn_submit_to_entregado(self):
-        for linea in self.linea_pedido_ids:
-            linea.repuesto_id.stock += linea.cantidad
+        for linea_pedido in self.linea_pedido_ids:
+            for linea_taller in linea_pedido.repuesto_id.linea_taller_ids:
+                if self.taller_id == linea_taller.taller_id:
+                    linea_taller.stock += linea_pedido.cantidad
         self.write({"state":"entregado"})
     
     @api.depends('descuento', 'iva', 'linea_pedido_ids')
